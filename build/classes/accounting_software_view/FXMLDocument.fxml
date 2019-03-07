@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600" prefWidth="960" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accounting_software_controller.FXMLDocumentController">
+    <VBox alignment="center" spacing="5">
+        <TextArea fx:id="outputArea" editable="false" focusTraversable="false"
+         prefHeight="250.0" prefWidth="400.0"
+        wrapText="false"/>
+        <Button text="Display Ledger" fx:id="displayLedgButton" onAction="#displayLedg"/>
+    </VBox>
+</AnchorPane>
