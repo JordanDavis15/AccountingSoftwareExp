@@ -65,7 +65,7 @@ public class AccountingSoftModel{
             }
             sc.close();
             for(Integer i = 0; i < accName.size(); i++){
-                accounts.add(new Account( accNum.get(i), accName.get(i), accAmt.get(i)));
+                accounts.add(new AssetAccount( accNum.get(i), accName.get(i), accAmt.get(i)));
             }
         }
         catch(FileNotFoundException fnfe){
