@@ -7,11 +7,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600" prefWidth="960" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accounting_software_controller.FXMLDocumentController">
-    <VBox alignment="center" spacing="5">
-        <TextArea fx:id="outputArea" editable="false" focusTraversable="false"
-        prefHeight="250.0" prefWidth="400.0"
-        wrapText="false"/>
-        <Button text="Display Ledger" fx:id="displayLedgButton" onAction="#displayLedg"/>
-    </VBox>
+<AnchorPane id="AnchorPane" prefHeight="600" prefWidth="960" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="accounting_software_controller.FXMLDocumentController">
+    <children>
+        <VBox alignment="center" spacing="10">
+            <children>
+                <TextArea fx:id="outputArea" editable="false" focusTraversable="false" prefHeight="250.0" prefWidth="400.0" wrapText="false" />
+                <Button fx:id="displayLedgButton" onAction="#displayLedg" text="Display Ledger" />
+            </children>
+        </VBox>
+        <VBox layoutX="522.0" layoutY="14.0" prefHeight="285.0" prefWidth="360.0">
+          <!-- add more controls and fields-->
+        </VBox>
+    </children>
 </AnchorPane>

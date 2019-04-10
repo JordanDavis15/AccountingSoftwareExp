@@ -2,16 +2,17 @@
 package accounting_software_model;
 
 
-public class AssetAccount extends Account{
-    private int num;
+public class OwnersEquityAccount extends Account{
     
-    public AssetAccount(int num, String name, double amt){
+    int num;
+    
+    public OwnersEquityAccount(int num, String name, double amt){
         super(name, amt);
         this.num = setAccountNum(num);
     }
     
     public int setAccountNum(int num){
-        if(num >= 1000 && num < 2000){
+        if(num >+ 3000 && num < 4000){
             return num;
         }
         else{
