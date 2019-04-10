@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -14,6 +15,7 @@ public class AccountingSoftModel{
     
     //declares and instantiates accounts ArrayList
     private ArrayList<Account> accounts = new ArrayList<>();
+    private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity"};
     
     //name of file data is stored in
     private static final String FILE_NAME = "src/accounting_software_model/accountingData.txt";
@@ -77,6 +79,11 @@ public class AccountingSoftModel{
     //return accounts ArrayList method
     public ArrayList<Account> getAccounts(){
         return accounts;
+    }
+    
+    public ArrayList<String> getAccountTypes(){
+        ArrayList<String> types = new ArrayList<>(Arrays.asList(ACCOUNT_TYPES));
+        return types;
     }
     
     
