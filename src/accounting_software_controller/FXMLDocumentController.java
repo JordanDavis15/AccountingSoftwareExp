@@ -21,19 +21,24 @@ public class FXMLDocumentController implements Initializable {
     
     private AccountingSoftModel accModel;
     SingleSelectionModel<String> selectionModelD;
+    SingleSelectionModel<String> selectionModelC;
     
     @FXML Button displayLedgButton;
     @FXML TextArea outputArea;
+    @FXML ComboBox AccountSelectionDBox;
     @FXML ComboBox AccountSelectionCBox;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         accModel = new AccountingSoftModel();
+        AccountSelectionDBox.getItems().addAll(accModel.getAccountTypes());
         AccountSelectionCBox.getItems().addAll(accModel.getAccountTypes());
         //gets a reference to the SingleSelectionModel
-        selectionModelD = AccountSelectionCBox.getSelectionModel();
+        selectionModelD = AccountSelectionDBox.getSelectionModel();
+        selectionModelC = AccountSelectionCBox.getSelectionModel();
         selectionModelD.select(accModel.getDebitSelIndex());
+        selectionModelC.select(accModel.getDebitSelIndex());
     }  
     
     @FXML
@@ -45,10 +50,16 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    //decides which account to add
+    //no good explaination rn
     public void setDebitedAccIndex(){
         accModel.setDebitSelIndex(selectionModelD.getSelectedIndex());
     }
+    
+    //no good explaination rn
+    public void setCebitedAccIndex(){
+        accModel.setCebitSelIndex(selectionModelC.getSelectedIndex());
+    }
+    
     
     
 }

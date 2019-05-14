@@ -21,6 +21,7 @@ public class AccountingSoftModel{
     private ArrayList<Account> accounts = new ArrayList<>();
     private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity", "Revenue", "Expense"};
     private int debitSelectedIndex = 0;
+    private int creditSelectedIndex = 0;
     
     //name of file data is stored in
     private static final String FILE_NAME = "src/accounting_software_model/accountingData.txt";
@@ -105,6 +106,16 @@ public class AccountingSoftModel{
     //sets selected index
     public void setDebitSelIndex(int debitSelectedIndex){
         this.debitSelectedIndex = debitSelectedIndex;
+    }
+    
+    //returns selected index
+    public int getCebitSelIndex(){
+        return creditSelectedIndex;
+    }
+    
+    //sets selected index
+    public void setCebitSelIndex(int creditSelectedIndex){
+        this.creditSelectedIndex = creditSelectedIndex;
     }
     
     
