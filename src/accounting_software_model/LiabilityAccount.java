@@ -27,4 +27,14 @@ public class LiabilityAccount extends Account{
     public String toString(){
         return num + "/" + super.toString();
     }
+    
+    @Override
+    public String toStringForFileW(){
+        return num + "/" + super.toStringForFileW();
+    }
+    
+    @Override
+    public String toStringForFileR(){
+        return num + "\t|\t" + super.toStringForFileR();
+    }
 }

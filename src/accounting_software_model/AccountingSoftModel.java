@@ -37,7 +37,7 @@ public class AccountingSoftModel{
     public void writeToAccountingDataFile(){
         try(PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, false))){
             for(Account acc: accounts){
-                writer.println(acc.toString());
+                writer.println(acc.toStringForFileW());
             }
         }
         catch(IOException ioe){
@@ -73,8 +73,16 @@ public class AccountingSoftModel{
             }
             sc.close();
             for(Integer i = 0; i < accName.size(); i++){
-                accounts.add(new AssetAccount( accNum.get(i), accName.get(i), accAmt.get(i)));
-            }
+                if(accNum.get(i) >= 1000 && accNum.get(i) < 2000){
+                    accounts.add(new AssetAccount( accNum.get(i), accName.get(i), accAmt.get(i)));
+                }
+                else if(accNum.get(i) >= 2000 && accNum.get(i) < 3000){
+                    accounts.add(new LiabilityAccount( accNum.get(i), accName.get(i), accAmt.get(i)));
+                }
+                else if(accNum.get(i) >= 3000 && accNum.get(i) < 4000){
+                    accounts.add(new OwnersEquityAccount( accNum.get(i), accName.get(i), accAmt.get(i)));
+                }
+            }    
         }
         catch(FileNotFoundException fnfe){
             System.out.println("file not found");

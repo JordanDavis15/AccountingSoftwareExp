@@ -20,6 +20,15 @@ public class Account {
         return name + "/" + amt + "/";
     }
     
+    public String toStringForFileW(){
+        return name + "/" + amt + "/";
+    }
+    
+    
+    public String toStringForFileR(){
+        return name + "\t|\t$" + amt + "\t|\t";
+    }
+    
     
     
 }//end Account class

@@ -44,9 +44,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     //display ledger method...displays file contents to outputArea
     public void displayLedg(){
-        outputArea.appendText("\tLEDGER\n");
+        outputArea.appendText("\t\tLEDGER\n");
         for(Account acc: accModel.getAccounts()){
-            outputArea.appendText(acc.toString() + "\n");
+            outputArea.appendText(acc.toStringForFileR() + "\n");
         }
     }
     

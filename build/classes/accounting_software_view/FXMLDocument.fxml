@@ -63,5 +63,6 @@
          </font>
       </Label>
       <TextField fx:id="creditAmtField" layoutX="623.0" layoutY="319.0" prefHeight="25.0" prefWidth="137.0" promptText="Ex. 123.45" />
+      <Button fx:id="processJournalButton" layoutX="725.0" layoutY="388.0" mnemonicParsing="false" text="Process Journal Entry" />
     </children>
 </AnchorPane>

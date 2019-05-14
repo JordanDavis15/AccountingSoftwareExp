@@ -16,7 +16,7 @@ public class OwnersEquityAccount extends Account{
     }
     
     public int setAccountNum(int num){
-        if(num >+ 3000 && num < 4000){
+        if(num >= 3000 && num < 4000){
             return num;
         }
         else{
@@ -27,5 +27,15 @@ public class OwnersEquityAccount extends Account{
     @Override
     public String toString(){
         return num + "/" + super.toString();
+    }
+    
+    @Override
+    public String toStringForFileW(){
+        return num + "/" + super.toStringForFileW();
+    }
+    
+    @Override
+    public String toStringForFileR(){
+        return num + "\t|\t" + super.toStringForFileR();
     }
 }
