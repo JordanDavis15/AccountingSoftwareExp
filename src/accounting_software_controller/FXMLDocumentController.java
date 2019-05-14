@@ -10,22 +10,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.SelectionModel;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TextArea;
 
 
 public class FXMLDocumentController implements Initializable {
     
     private AccountingSoftModel accModel;
-    private SelectionModel sm;
+    SingleSelectionModel<String> sm;
     
     @FXML Button displayLedgButton;
     @FXML TextArea outputArea;
     @FXML ComboBox AccountSelectionCBox;
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         accModel = new AccountingSoftModel();
+        AccountSelectionCBox.getItems().addAll(accModel.getAccountTypes());
     }  
     
     @FXML

@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_model/LiabilityAccount.java</file>
             <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_model/AccountingSoftModel.java</file>
             <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_view/FXMLDocument.fxml</file>
-            <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_model/OwnersEquityAccount.java</file>
-            <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_model/AssetAccount.java</file>
+            <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_controller/FXMLDocumentController.java</file>
             <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_model/Account.java</file>
-            <file>file:/C:/Users/jadav/Documents/My_Programs/JavaProjects/AccountingSoftwareExp/src/accounting_software_model/accountingData.txt</file>
         </group>
     </open-files>
 </project-private>
