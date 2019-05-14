@@ -1,9 +1,12 @@
-
+/*
+    Jordan Davis
+    jadavis7776@yahoo.com
+    Date--rolling
+*/
 package accounting_software_controller;
 
 import accounting_software_model.Account;
 import accounting_software_model.AccountingSoftModel;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

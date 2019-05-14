@@ -1,4 +1,8 @@
-
+/*
+    Jordan Davis
+    jadavis7776@yahoo.com
+    Date--rolling
+*/
 package accounting_software_model;
 
 public class LiabilityAccount extends Account{
