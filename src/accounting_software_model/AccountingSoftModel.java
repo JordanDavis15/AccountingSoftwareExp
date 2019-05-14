@@ -15,7 +15,8 @@ public class AccountingSoftModel{
     
     //declares and instantiates accounts ArrayList
     private ArrayList<Account> accounts = new ArrayList<>();
-    private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity"};
+    private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity", "Revenue", "Expense"};
+    private int selectedIndex = 0;
     
     //name of file data is stored in
     private static final String FILE_NAME = "src/accounting_software_model/accountingData.txt";
@@ -81,10 +82,27 @@ public class AccountingSoftModel{
         return accounts;
     }
     
+    //sets next element in Accounts ArrayList
+    public void addAccount(Account a){
+        accounts.add(a);
+    }
+    
+    //returns account types ArrayList
     public ArrayList<String> getAccountTypes(){
         ArrayList<String> types = new ArrayList<>(Arrays.asList(ACCOUNT_TYPES));
         return types;
     }
+    
+    //returns selected index
+    public int getSelIndex(){
+        return selectedIndex;
+    }
+    
+    //sets selected index
+    public void setSelIndex(int selectedIndex){
+        this.selectedIndex = selectedIndex;
+    }
+    
     
     
     

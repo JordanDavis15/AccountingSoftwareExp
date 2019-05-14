@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 public class FXMLDocumentController implements Initializable {
     
     private AccountingSoftModel accModel;
-    SingleSelectionModel<String> sm;
+    SingleSelectionModel<String> selectionModel;
     
     @FXML Button displayLedgButton;
     @FXML TextArea outputArea;
@@ -28,6 +28,9 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         accModel = new AccountingSoftModel();
         AccountSelectionCBox.getItems().addAll(accModel.getAccountTypes());
+        //gets a reference to the SingleSelectionModel
+        selectionModel = AccountSelectionCBox.getSelectionModel();
+        selectionModel.select(accModel.getSelIndex());
     }  
     
     @FXML
@@ -41,15 +44,23 @@ public class FXMLDocumentController implements Initializable {
     
     //decides which account to add
     public void addAccount(){
-        if(sm.getSelectedItem().equals("Asset")){
+        accModel.setSelIndex(selectionModel.getSelectedIndex());
+
+        /*if(accModel.getSelIndex().equals){
+            System.out.println("hit");
+        }
+        else if(selectionModel.getSelectedItem().equals("Liability")){
             //TODO
         }
-        else if(sm.getSelectedItem().equals("Liability")){
+        else if(selectionModel.getSelectedItem().equals("Owners Equity")){
             //TODO
         }
-        else{
+        else if(selectionModel.getSelectedItem().equals("Revenue")){
             //TODO
         }
+        else if(selectionModel.getSelectedItem().equals("Expense")){
+            //TODO
+        }*/
     }
     
     
