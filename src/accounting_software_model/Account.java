@@ -5,7 +5,7 @@
 */
 package accounting_software_model;
 
-public class Account {
+public abstract class Account implements Comparable<Integer>{
     private String name;
     private double amt;
     
@@ -29,6 +29,7 @@ public class Account {
         return name + "\t|\t$" + amt + "\t|\t";
     }
     
+    public abstract int compareTo(Integer i1);
     
     
 }//end Account class

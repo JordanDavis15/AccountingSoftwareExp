@@ -37,4 +37,17 @@ public class LiabilityAccount extends Account{
     public String toStringForFileR(){
         return num + "\t|\t" + super.toStringForFileR();
     }
+    
+    @Override
+    public int compareTo(Integer i1){
+        if(this.num > i1){
+            return 1;
+        }
+        else if(this.num < i1){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+    }
 }
