@@ -43,12 +43,20 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     //display ledger method...displays file contents to outputArea
-    public void displayLedg(){
+    protected void displayLedg(){
         outputArea.setText("");
-        outputArea.appendText("\t\tLEDGER\nNum\t\t\t|\t\tName\t\t\t|\t\t\tAmount\t\t\t|\n");
+        String header = "\t\t\t\t\t\tLEDGER\n\nNUM\t\t|\t\tNAME\t\t\t\t|\t\tAMOUNT\t\t|\n";
+        //yes, it is very bad practice to hard code in a String such as dividion(below)
+        String division = "-----------------------------------------------------------------------------------";
+        outputArea.appendText(header + division + "\n");
         for(Account acc: accModel.getAccounts()){
             outputArea.appendText(acc.toStringForFileR() + "\n");
         }
+    }
+    
+    @FXML
+    protected void buttonClick(){
+        //TODO
     }
     
     //no good explaination rn
