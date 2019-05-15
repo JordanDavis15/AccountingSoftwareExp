@@ -54,7 +54,7 @@ public class AccountingSoftModel{
             sc.useDelimiter("/");
             ArrayList<String> accName = new ArrayList<>();
             ArrayList<Integer> accNum = new ArrayList<>();
-            ArrayList<Integer> accAmt = new ArrayList<>();
+            ArrayList<Double> accAmt = new ArrayList<>();
 
             //read line by line
             while(sc.hasNext()){
@@ -68,7 +68,7 @@ public class AccountingSoftModel{
 
                 //reads in accAmt
                 numStr = sc.next().trim();
-                Integer amtInt = Integer.parseInt(numStr);
+                Double amtInt = Double.parseDouble(numStr);
                 accAmt.add(amtInt);
 
 
@@ -89,7 +89,6 @@ public class AccountingSoftModel{
         catch(FileNotFoundException fnfe){
             System.out.println("file not found");
         }
-        writeToAccountingDataFile();
     }
     
     
