@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -38,6 +37,7 @@ public class AccountingSoftModel{
     //write to file method
     public void writeToAccountingDataFile(){
         try(PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, false))){
+            Collections.sort(accounts);
             for(Account acc: accounts){
                 writer.println(acc.toStringForFileW());
             }
@@ -89,6 +89,7 @@ public class AccountingSoftModel{
         catch(FileNotFoundException fnfe){
             System.out.println("file not found");
         }
+        writeToAccountingDataFile();
     }
     
     

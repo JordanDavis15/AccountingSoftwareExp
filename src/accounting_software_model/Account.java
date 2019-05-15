@@ -5,9 +5,10 @@
 */
 package accounting_software_model;
 
-public abstract class Account implements Comparable<Integer>{
+public abstract class Account implements Comparable<Account>{
     private String name;
     private double amt;
+    public abstract int getAccNum();
     
     
     public Account(String name, double amt){
@@ -29,7 +30,20 @@ public abstract class Account implements Comparable<Integer>{
         return name + "\t|\t$" + amt + "\t|\t";
     }
     
-    public abstract int compareTo(Integer i1);
+    @Override
+    public int compareTo(Account a1){
+        int caller = getAccNum();
+        int compToPass = a1.getAccNum();
+        if(caller > compToPass){
+            return 1;
+        }
+        else if(caller < compToPass){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+    }
     
     
 }//end Account class

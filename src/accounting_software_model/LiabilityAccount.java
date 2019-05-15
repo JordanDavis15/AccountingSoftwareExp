@@ -38,16 +38,9 @@ public class LiabilityAccount extends Account{
         return num + "\t|\t" + super.toStringForFileR();
     }
     
+    //returns account number
     @Override
-    public int compareTo(Integer i1){
-        if(this.num > i1){
-            return 1;
-        }
-        else if(this.num < i1){
-            return -1;
-        }
-        else{
-            return 0;
-        }
+    public int getAccNum(){
+        return num;
     }
 }
