@@ -18,7 +18,7 @@
     <children>
         <VBox alignment="center" layoutX="15.0" layoutY="15.0" spacing="10">
             <children>
-                <TextArea fx:id="outputArea" editable="false" focusTraversable="false" prefHeight="420.0" prefWidth="650.0" wrapText="false" />
+                <TextArea fx:id="outputArea" editable="false" focusTraversable="false" prefHeight="400.0" prefWidth="650.0" wrapText="false" />
                 <Button fx:id="displayLedgButton" onAction="#displayLedg" text="Display Ledger" />
             </children>
         </VBox>
