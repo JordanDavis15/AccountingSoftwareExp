@@ -51,7 +51,7 @@ public class AccountingSoftModel{
     //read from file method
     public void readFromFileAndAppendAccounts(){
         try(Scanner sc = new Scanner(new File(FILE_NAME))){
-            sc.useDelimiter("/");
+            sc.useDelimiter(";");
             ArrayList<String> accName = new ArrayList<>();
             ArrayList<Integer> accNum = new ArrayList<>();
             ArrayList<Double> accAmt = new ArrayList<>();

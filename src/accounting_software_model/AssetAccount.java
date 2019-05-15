@@ -35,7 +35,7 @@ public class AssetAccount extends Account{
     
     @Override
     public String toStringForFileR(){
-        return num + "\t|\t" + super.toStringForFileR();
+        return num + "\t\t\t|\t" + super.toStringForFileR();
     }
     
     //returns account number

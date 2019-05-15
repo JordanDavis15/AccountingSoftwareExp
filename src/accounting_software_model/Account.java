@@ -27,7 +27,7 @@ public abstract class Account implements Comparable<Account>{
     
     
     public String toStringForFileR(){
-        return name + "\t|\t$" + amt + "\t|\t";
+        return name + "\t\t\t\t\t\t|\t$" + amt + "\t\t\t|";
     }
     
     @Override
