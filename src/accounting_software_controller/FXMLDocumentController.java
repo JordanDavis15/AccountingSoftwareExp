@@ -8,12 +8,15 @@ package accounting_software_controller;
 import accounting_software_model.Account;
 import accounting_software_model.AccountingSoftModel;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 
@@ -22,11 +25,13 @@ public class FXMLDocumentController implements Initializable {
     private AccountingSoftModel accModel;
     SingleSelectionModel<String> selectionModelD;
     SingleSelectionModel<String> selectionModelC;
+    private ArrayList<TableColumn> headers = new ArrayList<>();
     
     @FXML Button displayLedgButton;
     @FXML TextArea outputArea;
     @FXML ComboBox AccountSelectionDBox;
     @FXML ComboBox AccountSelectionCBox;
+    @FXML TableView table;
     
     
     @Override
@@ -39,6 +44,12 @@ public class FXMLDocumentController implements Initializable {
         selectionModelC = AccountSelectionCBox.getSelectionModel();
         selectionModelD.select(accModel.getDebitSelIndex());
         selectionModelC.select(accModel.getDebitSelIndex());
+        for(int i = 0; i < accModel.getColumnHeaders().size(); i += 1){
+            TableColumn col = new TableColumn(accModel.getColumnHeaders().get(i));
+            col.setMinWidth(accModel.getColumnHeaderSpacing().get(i));
+            headers.add(col);
+        }
+        table.getColumns().addAll(headers);
     }  
     
     @FXML

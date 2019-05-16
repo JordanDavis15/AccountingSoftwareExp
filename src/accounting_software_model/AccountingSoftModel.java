@@ -21,6 +21,8 @@ public class AccountingSoftModel{
     //declares and instantiates accounts ArrayList
     private ArrayList<Account> accounts = new ArrayList<>();
     private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity", "Revenue", "Expense"};
+    private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance"};
+    private static final Integer[] GUI_COLUMN_HEADER_SPACING = {130, 250, 125};
     private int debitSelectedIndex = 0;
     private int creditSelectedIndex = 0;
     
@@ -102,10 +104,22 @@ public class AccountingSoftModel{
         accounts.add(a);
     }
     
-    //returns account types ArrayList
+    //returns ACCOUNT_TYPES ArrayList
     public ArrayList<String> getAccountTypes(){
         ArrayList<String> types = new ArrayList<>(Arrays.asList(ACCOUNT_TYPES));
         return types;
+    }
+    
+    //returns GUI_COLUMN_HEADERS ArrayList
+    public ArrayList<String> getColumnHeaders(){
+        ArrayList<String> headers = new ArrayList<>(Arrays.asList(GUI_COLUMN_HEADERS));
+        return headers;
+    }
+    
+    //returns GUI_COLUMN_HEADERS ArrayList
+    public ArrayList<Integer> getColumnHeaderSpacing(){
+        ArrayList<Integer> spacing = new ArrayList<>(Arrays.asList(GUI_COLUMN_HEADER_SPACING));
+        return spacing;
     }
     
     //returns selected index

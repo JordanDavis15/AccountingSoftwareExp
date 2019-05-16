@@ -16,12 +16,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accounting_software_controller.FXMLDocumentController">
     <children>
-        <VBox alignment="center" layoutX="15.0" layoutY="15.0" spacing="10">
-            <children>
-                <TextArea fx:id="outputArea" editable="false" focusTraversable="false" prefHeight="400.0" prefWidth="650.0" wrapText="false" />
-                <Button fx:id="displayLedgButton" onAction="#displayLedg" text="Display Ledger" />
-            </children>
-        </VBox>
       <ComboBox fx:id="AccountSelectionDBox" layoutX="850.0" layoutY="60.0" onHidden="#setDebitedAccIndex" prefHeight="31.0" prefWidth="176.0" promptText="Select Account" />
       <Label layoutX="850.0" layoutY="39.0" text="Select Account Type:">
          <font>
@@ -68,5 +62,6 @@
       </Label>
       <TextField fx:id="creditAmtField" layoutX="850.0" layoutY="319.0" prefHeight="25.0" prefWidth="137.0" promptText="Ex. 123.45" />
       <Button fx:id="processJournalButton" layoutX="950.0" layoutY="388.0" mnemonicParsing="false" onAction="#buttonClick" text="Process Journal Entry" />
+      <TableView fx:id="table" layoutX="40.0" layoutY="33.0" prefHeight="353.0" prefWidth="504.0" />
     </children>
 </AnchorPane>
