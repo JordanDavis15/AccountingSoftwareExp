@@ -25,7 +25,7 @@ public class AccountingSoftModel{
     private int creditSelectedIndex = 0;
     
     //name of file data is stored in
-    private static final String FILE_NAME = "src/accounting_software_model/accountingData.txt";
+    private static final String FILE_NAME = "accountingData.txt";
     
     
     //constructor
