@@ -22,23 +22,23 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="731.0" layoutY="96.0" text="Account Number:">
+      <Label layoutX="731.0" layoutY="146.0" text="Account Number:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="dAccountNumField" layoutX="850.0" layoutY="95.0" prefHeight="25.0" prefWidth="104.0" />
+      <TextField fx:id="dAccountNumField" layoutX="850.0" layoutY="145.0" prefHeight="25.0" prefWidth="104.0" />
       <Label layoutX="721.0" layoutY="20.0" text="DEBIT:" underline="true">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label layoutX="781.0" layoutY="133.0" text="Amount:$">
+      <Label layoutX="781.0" layoutY="183.0" text="Amount:$">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="debitAmtField" layoutX="850.0" layoutY="130.0" prefHeight="25.0" prefWidth="137.0" promptText="Ex. 123.45" />
+      <TextField fx:id="dAccountAmtField" layoutX="850.0" layoutY="180.0" prefHeight="25.0" prefWidth="137.0" promptText="Ex. 123.45" />
       <Label layoutX="721.0" layoutY="209.0" text="CREDIT:" underline="true">
          <font>
             <Font size="27.0" />
@@ -49,19 +49,31 @@
             <Font size="15.0" />
          </font></Label>
       <ComboBox fx:id="AccountSelectionCBox" layoutX="850.0" layoutY="249.0" prefHeight="31.0" prefWidth="168.0" promptText="Select Account" />
-      <Label layoutX="731.0" layoutY="285.0" text="Account Number:">
+      <Label layoutX="731.0" layoutY="335.0" text="Account Number:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="cAccountNumField" layoutX="850.0" layoutY="284.0" prefHeight="25.0" prefWidth="104.0" />
-      <Label layoutX="781.0" layoutY="322.0" text="Amount:$">
+      <TextField fx:id="cAccountNumField" layoutX="850.0" layoutY="334.0" prefHeight="25.0" prefWidth="104.0" />
+      <Label layoutX="781.0" layoutY="372.0" text="Amount:$">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="creditAmtField" layoutX="850.0" layoutY="319.0" prefHeight="25.0" prefWidth="137.0" promptText="Ex. 123.45" />
-      <Button fx:id="processJournalButton" layoutX="950.0" layoutY="388.0" mnemonicParsing="false" onAction="#buttonClick" text="Process Journal Entry" />
+      <TextField fx:id="cAccountAmtField" layoutX="850.0" layoutY="369.0" prefHeight="25.0" prefWidth="137.0" promptText="Ex. 123.45" />
+      <Button fx:id="processJournalButton" layoutX="950.0" layoutY="450.0" mnemonicParsing="false" onAction="#processJournalButtonClick" text="Process Journal Entry" />
       <TableView fx:id="table" layoutX="40.0" layoutY="33.0" prefHeight="353.0" prefWidth="504.0" />
+      <Label layoutX="746.0" layoutY="300.0" text="Account Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="746.0" layoutY="108.0" text="Account Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dAccountNameField" layoutX="850.0" layoutY="106.0" prefHeight="25.0" prefWidth="176.0" />
+      <TextField fx:id="cAccountNameField" layoutX="850.0" layoutY="298.0" prefHeight="25.0" prefWidth="176.0" />
     </children>
 </AnchorPane>

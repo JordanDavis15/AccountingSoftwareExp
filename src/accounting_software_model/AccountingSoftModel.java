@@ -149,7 +149,4 @@ public class AccountingSoftModel{
         this.creditSelectedIndex = creditSelectedIndex;
     }
     
-    
-    
-    
 }//end of AccountingSoftModel class

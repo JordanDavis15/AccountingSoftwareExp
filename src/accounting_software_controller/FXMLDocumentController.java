@@ -19,7 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
@@ -30,11 +30,17 @@ public class FXMLDocumentController implements Initializable {
     SingleSelectionModel<String> selectionModelC;
     private ArrayList<TableColumn> headers = new ArrayList<>();
     
-    @FXML Button displayLedgButton;
-    @FXML TextArea outputArea;
+    @FXML Button processJournalButton;
     @FXML ComboBox AccountSelectionDBox;
     @FXML ComboBox AccountSelectionCBox;
+    @FXML TextField dAccountNameField;
+    @FXML TextField dAccountNumField;
+    @FXML TextField dAccountAmtField;
+    @FXML TextField cAccountNameField;
+    @FXML TextField cAccountNumField;
+    @FXML TextField cAccountAmtField;
     @FXML TableView table;
+    
     
     
     @Override
@@ -54,29 +60,14 @@ public class FXMLDocumentController implements Initializable {
             col.setCellValueFactory(new PropertyValueFactory<>(accModel.getPVFFeederArray().get(i)));
             headers.add(col);
         }
-        
         table.getColumns().addAll(headers);
-        //table.getItems().add(accModel.getAccounts().get(0));
         table.setItems(accnt);
-        System.out.println(accModel.getAccounts().toString());
-    }  
-    
-    @FXML
-    //display ledger method...displays file contents to outputArea
-    protected void displayLedg(){
-        outputArea.setText("");
-        String header = "\t\t\t\t\t\tLEDGER\n\nNUM\t\t|\t\tNAME\t\t\t\t|\t\tAMOUNT\t\t|\n";
-        //yes, it is very bad practice to hard code in a String such as dividion(below)
-        String division = "-----------------------------------------------------------------------------------";
-        outputArea.appendText(header + division + "\n");
-        for(Account acc: accModel.getAccounts()){
-            outputArea.appendText(acc.toStringForFileR() + "\n");
-        }
     }
     
     @FXML
-    protected void buttonClick(){
+    protected void processJournalButtonClick(){
         //TODO
+        updateTable();
     }
     
     //no good explaination rn
@@ -87,6 +78,12 @@ public class FXMLDocumentController implements Initializable {
     //no good explaination rn
     public void setCebitedAccIndex(){
         accModel.setCebitSelIndex(selectionModelC.getSelectedIndex());
+    }
+    
+    //updates TableView table
+    public void updateTable(){
+        ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
+        table.setItems(accnt);
     }
     
     
