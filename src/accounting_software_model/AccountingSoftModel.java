@@ -46,7 +46,7 @@ public class AccountingSoftModel{
             }
         }
         catch(IOException ioe){
-            System.out.println("whoops somethin is screwed up");
+            System.out.println("Whoops somethin is screwed up");
         }
     }
     
@@ -54,7 +54,7 @@ public class AccountingSoftModel{
     //read from file method
     public void readFromFileAndAppendAccounts(){
         try(Scanner sc = new Scanner(new File(FILE_NAME))){
-            sc.useDelimiter(";");
+            sc.useDelimiter(",");
             ArrayList<String> accName = new ArrayList<>();
             ArrayList<Integer> accNum = new ArrayList<>();
             ArrayList<Double> accAmt = new ArrayList<>();
@@ -123,6 +123,7 @@ public class AccountingSoftModel{
         return spacing;
     }
     
+    //returns TABLE_PVF_FEEDER ArrayList
     public ArrayList<String> getPVFFeederArray(){
         ArrayList<String> pvfArr = new ArrayList<>(Arrays.asList(TABLE_PVF_FEEDER));
         return pvfArr;

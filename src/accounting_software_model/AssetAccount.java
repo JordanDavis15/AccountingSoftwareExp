@@ -25,12 +25,12 @@ public class AssetAccount extends Account{
     
     @Override
     public String toString(){
-        return num + "/" + super.toString();
+        return num + "|" + super.toString();
     }
     
     @Override
     public String toStringForFileW(){
-        return num + "\t|\t" + super.toStringForFileR();
+        return num + "," + super.toStringForFileR();
     }
     
     @Override

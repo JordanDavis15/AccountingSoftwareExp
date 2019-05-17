@@ -25,12 +25,12 @@ public class LiabilityAccount extends Account{
     
     @Override
     public String toString(){
-        return num + "/" + super.toString();
+        return num + "|" + super.toString();
     }
     
     @Override
     public String toStringForFileW(){
-        return num + "/" + super.toStringForFileW();
+        return num + "," + super.toStringForFileW();
     }
     
     @Override

@@ -10,27 +10,29 @@ public abstract class Account implements Comparable<Account>{
     private double amt;
     public abstract int getNum();
     
-    
+    //default constructor
     public Account(String name, double amt){
         this.name = name;
         this.amt = amt;   
     }
     
+    //returns name
     public String getName(){
         return name;
     }
     
+    //returns amt
     public double getAmt(){
         return amt;
     }
     
     @Override
     public String toString(){
-        return name + "/" + amt + "/";
+        return name + "|" + amt + "|";
     }
     
     public String toStringForFileW(){
-        return name + "/" + amt + "/";
+        return name + "," + amt + ",";
     }
     
     
