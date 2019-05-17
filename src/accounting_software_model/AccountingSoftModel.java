@@ -23,6 +23,7 @@ public class AccountingSoftModel{
     private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity", "Revenue", "Expense"};
     private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance"};
     private static final Integer[] GUI_COLUMN_HEADER_SPACING = {130, 250, 125};
+    private static final String[] TABLE_PVF_FEEDER = {"num", "name", "amt"};
     private int debitSelectedIndex = 0;
     private int creditSelectedIndex = 0;
     
@@ -120,6 +121,11 @@ public class AccountingSoftModel{
     public ArrayList<Integer> getColumnHeaderSpacing(){
         ArrayList<Integer> spacing = new ArrayList<>(Arrays.asList(GUI_COLUMN_HEADER_SPACING));
         return spacing;
+    }
+    
+    public ArrayList<String> getPVFFeederArray(){
+        ArrayList<String> pvfArr = new ArrayList<>(Arrays.asList(TABLE_PVF_FEEDER));
+        return pvfArr;
     }
     
     //returns selected index

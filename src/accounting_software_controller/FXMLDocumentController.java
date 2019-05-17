@@ -10,6 +10,8 @@ import accounting_software_model.AccountingSoftModel;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,6 +20,7 @@ import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -44,12 +47,18 @@ public class FXMLDocumentController implements Initializable {
         selectionModelC = AccountSelectionCBox.getSelectionModel();
         selectionModelD.select(accModel.getDebitSelIndex());
         selectionModelC.select(accModel.getDebitSelIndex());
+        ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
         for(int i = 0; i < accModel.getColumnHeaders().size(); i += 1){
-            TableColumn col = new TableColumn(accModel.getColumnHeaders().get(i));
+            TableColumn<String, Account> col = new TableColumn<>(accModel.getColumnHeaders().get(i));
             col.setMinWidth(accModel.getColumnHeaderSpacing().get(i));
+            col.setCellValueFactory(new PropertyValueFactory<>(accModel.getPVFFeederArray().get(i)));
             headers.add(col);
         }
+        
         table.getColumns().addAll(headers);
+        //table.getItems().add(accModel.getAccounts().get(0));
+        table.setItems(accnt);
+        System.out.println(accModel.getAccounts().toString());
     }  
     
     @FXML

@@ -41,7 +41,7 @@ public class OwnersEquityAccount extends Account{
     
     //returns account number
     @Override
-    public int getAccNum(){
+    public int getNum(){
         return num;
     }
 }

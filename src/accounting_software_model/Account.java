@@ -8,14 +8,22 @@ package accounting_software_model;
 public abstract class Account implements Comparable<Account>{
     private String name;
     private double amt;
-    public abstract int getAccNum();
+    public abstract int getNum();
     
     
     public Account(String name, double amt){
         this.name = name;
-        this.amt = amt;
-        
+        this.amt = amt;   
     }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public double getAmt(){
+        return amt;
+    }
+    
     @Override
     public String toString(){
         return name + "/" + amt + "/";
@@ -32,8 +40,8 @@ public abstract class Account implements Comparable<Account>{
     
     @Override
     public int compareTo(Account a1){
-        int caller = getAccNum();
-        int compToPass = a1.getAccNum();
+        int caller = getNum();
+        int compToPass = a1.getNum();
         if(caller > compToPass){
             return 1;
         }
