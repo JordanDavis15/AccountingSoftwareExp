@@ -67,21 +67,23 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     protected void processJournalButtonClick(){
         //check debited account num
-        if(dAccountNumField.getText().trim() == null || !isInt(dAccountNumField.getText().trim()) || !isInRange(Integer.parseInt(dAccountNumField.getText().trim()))){
+        if(dAccountNumField.getText().trim() == null || !isInt(dAccountNumField.getText().trim()) || !isInRange('d', Integer.parseInt(dAccountNumField.getText().trim()))){
             dAccountNumField.setText("");
             dAccountNumField.setPromptText("Enter a valid number!");
         }
         else{
-            //TODO
+            int dAccNum = Integer.parseInt(dAccountNumField.getText().trim());
+            System.out.println("dAccNum: " + dAccNum); //REMOVE LATER THIS IS FOR DEBUGGING
         }
         
         //check credited account num
-        if(cAccountNumField.getText().trim() == null || !isInt(cAccountNumField.getText().trim()) || !isInRange(Integer.parseInt(cAccountNumField.getText().trim()))){
+        if(cAccountNumField.getText().trim() == null || !isInt(cAccountNumField.getText().trim()) || !isInRange('c', Integer.parseInt(cAccountNumField.getText().trim()))){
             cAccountNumField.setText("");
             cAccountNumField.setPromptText("Enter a valid number!");
         }
         else{
-            //TODO 
+            int cAccNum = Integer.parseInt(cAccountNumField.getText().trim());
+            System.out.println("cAccNum: " + cAccNum); //REMOVE LATER THIS IS FOR DEBUGGING
         }
         updateTable();
     }
@@ -92,8 +94,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     //no good explaination rn
-    public void setCebitedAccIndex(){
-        accModel.setCebitSelIndex(selectionModelC.getSelectedIndex());
+    public void setCreditedAccIndex(){
+        accModel.setCreditSelIndex(selectionModelC.getSelectedIndex());
     }
     
     //updates TableView table
@@ -113,9 +115,22 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    public boolean isInRange(int accNum){
-        if(accNum >= accModel.getLowerNum() && accNum < accModel.getHigherNum()){
-            return true;
+    public boolean isInRange(char dOrc, int accNum){
+        if(dOrc == 'd'){
+            if(accNum >= accModel.getLowerNum(accModel.getDebitSelIndex()) && accNum < accModel.getHigherNum(accModel.getDebitSelIndex())){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else if(dOrc == 'c'){
+            if(accNum >= accModel.getLowerNum(accModel.getCreditSelIndex()) && accNum < accModel.getHigherNum(accModel.getCreditSelIndex())){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
         else{
             return false;

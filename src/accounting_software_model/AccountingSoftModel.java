@@ -140,19 +140,18 @@ public class AccountingSoftModel{
     }
     
     //returns selected index
-    public int getCebitSelIndex(){
+    public int getCreditSelIndex(){
         return creditSelectedIndex;
     }
     
     //sets selected index
-    public void setCebitSelIndex(int creditSelectedIndex){
+    public void setCreditSelIndex(int creditSelectedIndex){
         this.creditSelectedIndex = creditSelectedIndex;
     }
     
-    
     //returns lowerNum for each account type
-    public int getLowerNum(){
-        switch (debitSelectedIndex){
+    public int getLowerNum(int compare){
+        switch (compare){
             case 0:
                 return new AssetAccount().getLowerNum();
             case 1:
@@ -165,8 +164,8 @@ public class AccountingSoftModel{
     }
     
     //returns higherNum for each account type
-    public int getHigherNum(){
-        switch (debitSelectedIndex){
+    public int getHigherNum(int compare){
+        switch (compare){
             case 0:
                 return new AssetAccount().getHigherNum();
             case 1:
