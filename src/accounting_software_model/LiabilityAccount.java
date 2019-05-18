@@ -15,11 +15,13 @@ public class LiabilityAccount extends Account{
         super("default", 0);
     }
     
+    //overloaded constructor
     public LiabilityAccount(int num, String name, double amt){
         super(name, amt);
         this.num = setAccountNum(num);
     }
     
+    //setter for int num
     public int setAccountNum(int num){
         if(num >= lowerNum && num < higherNum){
             return num;
@@ -29,16 +31,19 @@ public class LiabilityAccount extends Account{
         }
     }
     
+    //default toString
     @Override
     public String toString(){
         return num + "|" + super.toString();
     }
     
+    //toString for writing to file
     @Override
     public String toStringForFileW(){
         return num + "," + super.toStringForFileW();
     }
     
+    //toString for reading from file
     @Override
     public String toStringForFileR(){
         return num + "\t\t\t|\t" + super.toStringForFileR();
