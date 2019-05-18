@@ -66,7 +66,23 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     protected void processJournalButtonClick(){
-        //TODO
+        //check debited account num
+        if(dAccountNumField.getText().trim() == null || !isInt(dAccountNumField.getText().trim()) || !isInRange(Integer.parseInt(dAccountNumField.getText().trim()))){
+            dAccountNumField.setText("");
+            dAccountNumField.setPromptText("Enter a valid number!");
+        }
+        else{
+            //TODO
+        }
+        
+        //check credited account num
+        if(cAccountNumField.getText().trim() == null || !isInt(cAccountNumField.getText().trim()) || !isInRange(Integer.parseInt(cAccountNumField.getText().trim()))){
+            cAccountNumField.setText("");
+            cAccountNumField.setPromptText("Enter a valid number!");
+        }
+        else{
+            //TODO 
+        }
         updateTable();
     }
     
@@ -84,6 +100,26 @@ public class FXMLDocumentController implements Initializable {
     public void updateTable(){
         ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
         table.setItems(accnt);
+    }
+    
+    //checks to see if input is a int
+    public boolean isInt(String intTest){
+        try{
+            Integer.parseInt(intTest);
+            return true;
+        }
+        catch(NumberFormatException nfe){
+            return false;
+        }
+    }
+    
+    public boolean isInRange(int accNum){
+        if(accNum >= accModel.getLowerNum() && accNum < accModel.getHigherNum()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     

@@ -20,7 +20,7 @@ public class AccountingSoftModel{
     
     //declares and instantiates accounts ArrayList
     private ArrayList<Account> accounts = new ArrayList<>();
-    private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity", "Revenue", "Expense"};
+    private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity"};
     private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance"};
     private static final Integer[] GUI_COLUMN_HEADER_SPACING = {130, 250, 125};
     private static final String[] TABLE_PVF_FEEDER = {"num", "name", "amt"};
@@ -147,6 +147,35 @@ public class AccountingSoftModel{
     //sets selected index
     public void setCebitSelIndex(int creditSelectedIndex){
         this.creditSelectedIndex = creditSelectedIndex;
+    }
+    
+    
+    //returns lowerNum for each account type
+    public int getLowerNum(){
+        switch (debitSelectedIndex){
+            case 0:
+                return new AssetAccount().getLowerNum();
+            case 1:
+                return new LiabilityAccount().getLowerNum();
+            case 2:
+                return new OwnersEquityAccount().getLowerNum();
+            default:
+                return 1;
+        }
+    }
+    
+    //returns higherNum for each account type
+    public int getHigherNum(){
+        switch (debitSelectedIndex){
+            case 0:
+                return new AssetAccount().getHigherNum();
+            case 1:
+                return new LiabilityAccount().getHigherNum();
+            case 2:
+                return new OwnersEquityAccount().getHigherNum();
+            default:
+                return -1;
+        }
     }
     
 }//end of AccountingSoftModel class

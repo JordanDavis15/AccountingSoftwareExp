@@ -7,7 +7,13 @@ package accounting_software_model;
 
 public class LiabilityAccount extends Account{
     
-    int num;
+    private int num;
+    private int lowerNum = 2000, higherNum = 3000;
+    
+    //default constructor
+    public LiabilityAccount(){
+        super("default", 0);
+    }
     
     public LiabilityAccount(int num, String name, double amt){
         super(name, amt);
@@ -15,7 +21,7 @@ public class LiabilityAccount extends Account{
     }
     
     public int setAccountNum(int num){
-        if(num >= 2000 && num < 3000){
+        if(num >= lowerNum && num < higherNum){
             return num;
         }
         else{
@@ -42,5 +48,15 @@ public class LiabilityAccount extends Account{
     @Override
     public int getNum(){
         return num;
+    }
+    
+    //returns lowerNum
+    public int getLowerNum(){
+        return lowerNum;
+    }
+    
+    //returns higherNum
+    public int getHigherNum(){
+        return higherNum;
     }
 }

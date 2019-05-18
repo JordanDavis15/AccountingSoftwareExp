@@ -7,7 +7,14 @@ package accounting_software_model;
 
 
 public class AssetAccount extends Account{
+   
     private int num;
+    private int lowerNum = 1000, higherNum = 2000;
+    
+    //default constructor
+    public AssetAccount(){
+        super("default", 0);
+    }
     
     public AssetAccount(int num, String name, double amt){
         super(name, amt);
@@ -15,7 +22,7 @@ public class AssetAccount extends Account{
     }
     
     public int setAccountNum(int num){
-        if(num >= 1000 && num < 2000){
+        if(num >= lowerNum && num < higherNum){
             return num;
         }
         else{
@@ -44,6 +51,14 @@ public class AssetAccount extends Account{
         return num;
     }
 
-
+    //returns lowerNum
+    public int getLowerNum(){
+        return lowerNum;
+    }
+    
+    //returns higherNum
+    public int getHigherNum(){
+        return higherNum;
+    }
 
 }

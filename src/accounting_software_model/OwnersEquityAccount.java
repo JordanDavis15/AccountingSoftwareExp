@@ -8,7 +8,14 @@ package accounting_software_model;
 
 public class OwnersEquityAccount extends Account{
     
-    int num;
+    private int num;
+    private int lowerNum = 3000, higherNum = 4000;
+    
+    
+    //default constructor
+    public OwnersEquityAccount(){
+        super("default", 0);
+    }
     
     public OwnersEquityAccount(int num, String name, double amt){
         super(name, amt);
@@ -16,7 +23,7 @@ public class OwnersEquityAccount extends Account{
     }
     
     public int setAccountNum(int num){
-        if(num >= 3000 && num < 4000){
+        if(num >= lowerNum && num < higherNum){
             return num;
         }
         else{
@@ -43,5 +50,15 @@ public class OwnersEquityAccount extends Account{
     @Override
     public int getNum(){
         return num;
+    }
+    
+    //returns lowerNum
+    public int getLowerNum(){
+        return lowerNum;
+    }
+    
+    //returns higherNum
+    public int getHigherNum(){
+        return higherNum;
     }
 }

@@ -27,7 +27,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="dAccountNumField" layoutX="850.0" layoutY="145.0" prefHeight="25.0" prefWidth="104.0" />
+      <TextField fx:id="dAccountNumField" layoutX="850.0" layoutY="145.0" prefHeight="25.0" prefWidth="130.0" />
       <Label layoutX="721.0" layoutY="20.0" text="DEBIT:" underline="true">
          <font>
             <Font size="27.0" />
@@ -54,7 +54,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="cAccountNumField" layoutX="850.0" layoutY="334.0" prefHeight="25.0" prefWidth="104.0" />
+      <TextField fx:id="cAccountNumField" layoutX="850.0" layoutY="334.0" prefHeight="25.0" prefWidth="130.0" />
       <Label layoutX="781.0" layoutY="372.0" text="Amount:$">
          <font>
             <Font size="15.0" />
