@@ -109,7 +109,9 @@ public class FXMLDocumentController implements Initializable {
         }
         else{
             cAccountAmtField.setText("");
-            cAccountAmtField.setPromptText("Enter valid amt");
+            cAccountAmtField.setPromptText("amts mismatch");
+            dAccountAmtField.setText("");
+            dAccountAmtField.setPromptText("amts mismatch");
         }
         
         updateTable();
