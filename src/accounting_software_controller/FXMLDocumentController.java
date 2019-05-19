@@ -9,6 +9,7 @@ import accounting_software_model.Account;
 import accounting_software_model.AccountingSoftModel;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,22 +70,48 @@ public class FXMLDocumentController implements Initializable {
         //check debited account num
         if(dAccountNumField.getText().trim() == null || !isInt(dAccountNumField.getText().trim()) || !isInRange('d', Integer.parseInt(dAccountNumField.getText().trim()))){
             dAccountNumField.setText("");
-            dAccountNumField.setPromptText("Enter a valid number!");
+            dAccountNumField.setPromptText("Enter valid number");
         }
         else{
             int dAccNum = Integer.parseInt(dAccountNumField.getText().trim());
             System.out.println("dAccNum: " + dAccNum); //REMOVE LATER THIS IS FOR DEBUGGING
         }
-        
         //check credited account num
         if(cAccountNumField.getText().trim() == null || !isInt(cAccountNumField.getText().trim()) || !isInRange('c', Integer.parseInt(cAccountNumField.getText().trim()))){
             cAccountNumField.setText("");
-            cAccountNumField.setPromptText("Enter a valid number!");
+            cAccountNumField.setPromptText("Enter valid number");
         }
         else{
             int cAccNum = Integer.parseInt(cAccountNumField.getText().trim());
             System.out.println("cAccNum: " + cAccNum); //REMOVE LATER THIS IS FOR DEBUGGING
         }
+        
+        //checks that debit and credit amts are valid doubles
+        boolean dAmtGood = false;
+        boolean cAmtGood = false;
+        if(!isDouble(dAccountAmtField.getText().trim())){
+            dAccountAmtField.setText("");
+            dAccountAmtField.setPromptText("Enter valid amt");
+        }
+        else{
+            dAmtGood = true;
+        }
+        if(!isDouble(cAccountAmtField.getText().trim())){
+            cAccountAmtField.setText("");
+            cAccountAmtField.setPromptText("Enter valid amt");
+        }
+        else{
+            cAmtGood = true;
+        }
+        //checks that debited and credited amounts are equal
+        if(dAmtGood && cAmtGood && Double.parseDouble(dAccountAmtField.getText().trim()) == (Double.parseDouble(cAccountAmtField.getText().trim()))){
+            System.out.println("good"); //REMOVE LATER THIS IS FOR DEBUGGING
+        }
+        else{
+            cAccountAmtField.setText("");
+            cAccountAmtField.setPromptText("Enter valid amt");
+        }
+        
         updateTable();
     }
     
@@ -108,6 +135,17 @@ public class FXMLDocumentController implements Initializable {
     public boolean isInt(String intTest){
         try{
             Integer.parseInt(intTest);
+            return true;
+        }
+        catch(NumberFormatException nfe){
+            return false;
+        }
+    }
+
+    //checks to see if input is a double
+    public boolean isDouble(String doubleTest){
+        try{
+            Double.parseDouble(doubleTest);
             return true;
         }
         catch(NumberFormatException nfe){
