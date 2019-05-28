@@ -117,12 +117,12 @@ public class FXMLDocumentController implements Initializable {
         updateTable();
     }
     
-    //no good explaination rn
+    //sets the setDebitSelIndex
     public void setDebitedAccIndex(){
         accModel.setDebitSelIndex(selectionModelD.getSelectedIndex());
     }
     
-    //no good explaination rn
+    //sets the setCreditSelIndex
     public void setCreditedAccIndex(){
         accModel.setCreditSelIndex(selectionModelC.getSelectedIndex());
     }
