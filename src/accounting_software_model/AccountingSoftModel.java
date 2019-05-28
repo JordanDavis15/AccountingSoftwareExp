@@ -97,6 +97,7 @@ public class AccountingSoftModel{
     
     //return accounts ArrayList method
     public ArrayList<Account> getAccounts(){
+    	System.out.println(" accounts: "+accounts);
         return accounts;
     }
     

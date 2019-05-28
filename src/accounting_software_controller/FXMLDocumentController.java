@@ -7,6 +7,10 @@ package accounting_software_controller;
 
 import accounting_software_model.Account;
 import accounting_software_model.AccountingSoftModel;
+import accounting_software_model.AssetAccount;
+import accounting_software_model.LiabilityAccount;
+import accounting_software_model.OwnersEquityAccount;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,12 +30,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FXMLDocumentController implements Initializable {
     
     private AccountingSoftModel accModel;
-    SingleSelectionModel<String> selectionModelD;
-    SingleSelectionModel<String> selectionModelC;
+    private SingleSelectionModel<String> selectionModelD;
+    private SingleSelectionModel<String> selectionModelC;
     private ArrayList<TableColumn> headers = new ArrayList<>();
     
     @FXML Button processJournalButton;
-    @FXML ComboBox AccountSelectionDBox;
+    @FXML ComboBox<String> AccountSelectionDBox;
     @FXML ComboBox AccountSelectionCBox;
     @FXML TextField dAccountNameField;
     @FXML TextField dAccountNumField;
@@ -70,12 +74,12 @@ public class FXMLDocumentController implements Initializable {
         updateTable();
     }
     
-    //no good explaination rn
+    //no good explanation rn
     public void setDebitedAccIndex(){
         accModel.setDebitSelIndex(selectionModelD.getSelectedIndex());
     }
     
-    //no good explaination rn
+    //no good explanation rn
     public void setCebitedAccIndex(){
         accModel.setCebitSelIndex(selectionModelC.getSelectedIndex());
     }
@@ -83,7 +87,21 @@ public class FXMLDocumentController implements Initializable {
     //updates TableView table
     public void updateTable(){
         ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
+        accModel.addAccount(determineType());
         table.setItems(accnt);
+    }
+    
+    private Account determineType() {
+		//System.out.println(selectionModelD.getSelectedItem());
+    	String s = selectionModelD.getSelectedItem();
+    	if(s.equals("Asset"))return new AssetAccount(Integer.parseInt(dAccountNumField.getText()), dAccountNameField.getText(), Double.parseDouble(dAccountAmtField.getText()));
+    	if(s.equals("Liability"))return new LiabilityAccount(Integer.parseInt(dAccountNumField.getText()), dAccountNameField.getText(), Double.parseDouble(dAccountAmtField.getText()));
+    	if(s.equals("Owners Equity"))return new OwnersEquityAccount(Integer.parseInt(dAccountNumField.getText()), dAccountNameField.getText(), Double.parseDouble(dAccountAmtField.getText()));
+
+    	
+    	
+    	
+    	return null;
     }
     
     
