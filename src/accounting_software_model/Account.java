@@ -9,6 +9,7 @@ public abstract class Account implements Comparable<Account>{
     private String name;
     private double amt;
     public abstract int getNum();
+    public abstract String getNormalSide();
     
     //default constructor
     public Account(String name, double amt){

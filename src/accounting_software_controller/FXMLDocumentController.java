@@ -8,9 +8,10 @@ package accounting_software_controller;
 import accounting_software_model.Account;
 import accounting_software_model.AccountingSoftModel;
 import accounting_software_model.AssetAccount;
+import accounting_software_model.LiabilityAccount;
+import accounting_software_model.OwnersEquityAccount;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +31,7 @@ public class FXMLDocumentController implements Initializable {
     private AccountingSoftModel accModel;
     SingleSelectionModel<String> selectionModelD;
     SingleSelectionModel<String> selectionModelC;
-    private ArrayList<TableColumn> headers = new ArrayList<>();
+    private final ArrayList<TableColumn> headers = new ArrayList<>();
     
     @FXML Button processJournalButton;
     @FXML ComboBox AccountSelectionDBox;
@@ -69,10 +70,22 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     protected void processJournalButtonClick(){
         if(isOkToAdd()){
-            //add
+            
+            switch(accModel.getDebitSelIndex()){
+                case 0:
+                    AssetAccount newAAccount = new AssetAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
+                    if(dupPos(newAAccount) > 0){
+                        accModel.getAccounts().get(dupPos(newAAccount)).setAmt(newAAccount.getAmt() + accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
+                    }
+                case 1:
+                    accModel.addAccount(new LiabilityAccount());
+                case 2:
+                    accModel.addAccount(new OwnersEquityAccount());
+            }
         }
         
         updateTable();
+        accModel.writeToAccountingDataFile();
     }
     
     //sets the setDebitSelIndex
@@ -145,7 +158,6 @@ public class FXMLDocumentController implements Initializable {
         }
         else{
             int dAccNum = Integer.parseInt(dAccountNumField.getText().trim());
-            System.out.println("dAccNum: " + dAccNum); //REMOVE LATER THIS IS FOR DEBUGGING
         }
         //check credited account num
         if(cAccountNumField.getText().trim() == null || !isInt(cAccountNumField.getText().trim()) || !isInRange('c', Integer.parseInt(cAccountNumField.getText().trim()))){
@@ -155,7 +167,6 @@ public class FXMLDocumentController implements Initializable {
         }
         else{
             int cAccNum = Integer.parseInt(cAccountNumField.getText().trim());
-            System.out.println("cAccNum: " + cAccNum); //REMOVE LATER THIS IS FOR DEBUGGING
         }
         
         //checks that debit and credit amts are valid doubles
@@ -189,6 +200,15 @@ public class FXMLDocumentController implements Initializable {
             isOk = false;
         }
         return isOk;
+    }
+    
+    private int dupPos(Account a){
+        for(int i = 0; i < accModel.getAccounts().size(); i += 1){
+            if(accModel.getAccounts().get(i).getNum() == a.getNum() || accModel.getAccounts().get(i).getName().equalsIgnoreCase(a.getName())){
+                return i;
+            }
+        }
+        return -1;
     }
     
 }

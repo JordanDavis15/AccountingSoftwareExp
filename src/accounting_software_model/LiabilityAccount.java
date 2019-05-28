@@ -9,6 +9,7 @@ public class LiabilityAccount extends Account{
     
     private int num;
     private int lowerNum = 2000, higherNum = 3000;
+    private final String normalSide = "credit";
     
     //default constructor
     public LiabilityAccount(){
@@ -47,6 +48,12 @@ public class LiabilityAccount extends Account{
     @Override
     public String toStringForFileR(){
         return num + "\t\t\t|\t" + super.toStringForFileR();
+    }
+    
+    //returns normal side
+    @Override
+    public String getNormalSide(){
+        return normalSide;
     }
     
     //returns account number

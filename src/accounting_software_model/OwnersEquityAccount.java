@@ -10,6 +10,7 @@ public class OwnersEquityAccount extends Account{
     
     private int num;
     private int lowerNum = 3000, higherNum = 4000;
+    private String normalSide = "credit";
     
     
     //default constructor
@@ -49,6 +50,12 @@ public class OwnersEquityAccount extends Account{
     @Override
     public String toStringForFileR(){
         return num + "\t\t\t|\t" + super.toStringForFileR();
+    }
+    
+    //returns normal side
+    @Override
+    public String getNormalSide(){
+        return normalSide;
     }
     
     //returns account number

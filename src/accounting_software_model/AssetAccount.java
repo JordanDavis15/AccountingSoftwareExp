@@ -10,6 +10,7 @@ public class AssetAccount extends Account{
    
     private int num;
     private int lowerNum = 1000, higherNum = 2000;
+    private final String normalSide = "debit";
     
     //default constructor
     public AssetAccount(){
@@ -48,6 +49,12 @@ public class AssetAccount extends Account{
     @Override
     public String toStringForFileR(){
         return num + "\t\t\t|\t" + super.toStringForFileR();
+    }
+    
+    //returns normal side
+    @Override
+    public String getNormalSide(){
+        return normalSide;
     }
     
     //returns account number
