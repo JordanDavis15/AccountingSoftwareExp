@@ -27,6 +27,11 @@ public abstract class Account implements Comparable<Account>{
         return amt;
     }
     
+    //sets amt value
+    public void setAmt(double amt){
+        this.amt = amt;
+    }
+    
     //default toString
     @Override
     public String toString(){

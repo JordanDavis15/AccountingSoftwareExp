@@ -51,6 +51,7 @@ public class FXMLDocumentController implements Initializable {
         accModel = new AccountingSoftModel();
         AccountSelectionDBox.getItems().addAll(accModel.getAccountTypes());
         AccountSelectionCBox.getItems().addAll(accModel.getAccountTypes());
+        
         //gets a reference to the SingleSelectionModel
         selectionModelD = AccountSelectionDBox.getSelectionModel();
         selectionModelC = AccountSelectionCBox.getSelectionModel();
@@ -71,16 +72,26 @@ public class FXMLDocumentController implements Initializable {
     protected void processJournalButtonClick(){
         if(isOkToAdd()){
             
+            //process the debit section of the input
             switch(accModel.getDebitSelIndex()){
                 case 0:
                     AssetAccount newAAccount = new AssetAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
                     if(dupPos(newAAccount) > 0){
                         accModel.getAccounts().get(dupPos(newAAccount)).setAmt(newAAccount.getAmt() + accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
                     }
+                    accModel.addAccount(newAAccount);
                 case 1:
-                    accModel.addAccount(new LiabilityAccount());
+                    LiabilityAccount newLAccount = new LiabilityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
+                    if(dupPos(newLAccount) > 0){
+                        accModel.getAccounts().get(dupPos(newLAccount)).setAmt(newLAccount.getAmt() - accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
+                    }
+                    accModel.addAccount(newLAccount);
                 case 2:
-                    accModel.addAccount(new OwnersEquityAccount());
+                    OwnersEquityAccount newOEAccount = new OwnersEquityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
+                    if(dupPos(newOEAccount) > 0){
+                        accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(newOEAccount.getAmt() - accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
+                    }
+                    accModel.addAccount(newOEAccount);
             }
         }
         
@@ -202,6 +213,7 @@ public class FXMLDocumentController implements Initializable {
         return isOk;
     }
     
+    //returns negative number if its not a duplicate
     private int dupPos(Account a){
         for(int i = 0; i < accModel.getAccounts().size(); i += 1){
             if(accModel.getAccounts().get(i).getNum() == a.getNum() || accModel.getAccounts().get(i).getName().equalsIgnoreCase(a.getName())){
