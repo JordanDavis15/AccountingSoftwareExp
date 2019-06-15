@@ -42,7 +42,7 @@ public class AssetAccount extends Account{
     //toString for writing to file
     @Override
     public String toStringForFileW(){
-        return num + "," + super.toStringForFileR();
+        return num + "," + super.toStringForFileW();
     }
     
     //toString for reading from file

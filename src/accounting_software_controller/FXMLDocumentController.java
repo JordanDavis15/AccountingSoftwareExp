@@ -79,19 +79,28 @@ public class FXMLDocumentController implements Initializable {
                     if(dupPos(newAAccount) > 0){
                         accModel.getAccounts().get(dupPos(newAAccount)).setAmt(newAAccount.getAmt() + accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
                     }
-                    accModel.addAccount(newAAccount);
+                    else{
+                        accModel.addAccount(newAAccount);
+                    }
+                    break;
                 case 1:
                     LiabilityAccount newLAccount = new LiabilityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
                     if(dupPos(newLAccount) > 0){
                         accModel.getAccounts().get(dupPos(newLAccount)).setAmt(newLAccount.getAmt() - accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
                     }
-                    accModel.addAccount(newLAccount);
+                    else{
+                        accModel.addAccount(newLAccount);
+                    }
+                    break;
                 case 2:
                     OwnersEquityAccount newOEAccount = new OwnersEquityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
                     if(dupPos(newOEAccount) > 0){
                         accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(newOEAccount.getAmt() - accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
                     }
-                    accModel.addAccount(newOEAccount);
+                    else{
+                        accModel.addAccount(newOEAccount);
+                    }
+                    break;
             }
         }
         
