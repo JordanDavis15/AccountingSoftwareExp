@@ -256,7 +256,7 @@ public class FXMLDocumentController implements Initializable {
     //returns negative number if its not a duplicate
     private int dupPos(Account a){
         for(int i = 0; i < accModel.getAccounts().size(); i += 1){
-            if(accModel.getAccounts().get(i).getNum() == a.getNum() /*|| accModel.getAccounts().get(i).getName().equalsIgnoreCase(a.getName())//this half checks for duplicate based on name*/){
+            if(accModel.getAccounts().get(i).getNum() == a.getNum()){
                 return i;
             }
         }
