@@ -55,8 +55,10 @@ public class FXMLDocumentController implements Initializable {
         //gets a reference to the SingleSelectionModel
         selectionModelD = AccountSelectionDBox.getSelectionModel();
         selectionModelC = AccountSelectionCBox.getSelectionModel();
-        selectionModelD.select(accModel.getDebitSelIndex());
-        selectionModelC.select(accModel.getDebitSelIndex());
+        //selectionModelD.select(accModel.getDebitSelIndex());
+        //selectionModelC.select(accModel.getDebitSelIndex());
+        
+        //populates table
         ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
         for(int i = 0; i < accModel.getColumnHeaders().size(); i += 1){
             TableColumn<String, Account> col = new TableColumn<>(accModel.getColumnHeaders().get(i));
@@ -76,7 +78,7 @@ public class FXMLDocumentController implements Initializable {
             switch(accModel.getDebitSelIndex()){
                 case 0:
                     AssetAccount newAAccount = new AssetAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
-                    if(dupPos(newAAccount) > 0){
+                    if(dupPos(newAAccount) >= 0){
                         accModel.getAccounts().get(dupPos(newAAccount)).setAmt(newAAccount.getAmt() + accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
                     }
                     else{
@@ -85,7 +87,7 @@ public class FXMLDocumentController implements Initializable {
                     break;
                 case 1:
                     LiabilityAccount newLAccount = new LiabilityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
-                    if(dupPos(newLAccount) > 0){
+                    if(dupPos(newLAccount) >= 0){
                         accModel.getAccounts().get(dupPos(newLAccount)).setAmt(newLAccount.getAmt() - accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
                     }
                     else{
@@ -94,7 +96,7 @@ public class FXMLDocumentController implements Initializable {
                     break;
                 case 2:
                     OwnersEquityAccount newOEAccount = new OwnersEquityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
-                    if(dupPos(newOEAccount) > 0){
+                    if(dupPos(newOEAccount) >= 0){
                         accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(newOEAccount.getAmt() - accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
                     }
                     else{
@@ -102,9 +104,40 @@ public class FXMLDocumentController implements Initializable {
                     }
                     break;
             }
+            
+            //process the credit section of the input
+            switch(accModel.getCreditSelIndex()){
+                case 0:
+                    AssetAccount newAAccount = new AssetAccount(Integer.parseInt(cAccountNumField.getText().trim()), cAccountNameField.getText().trim(), Double.parseDouble(cAccountAmtField.getText().trim()));
+                    if(dupPos(newAAccount) >= 0){
+                        accModel.getAccounts().get(dupPos(newAAccount)).setAmt(newAAccount.getAmt() - accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
+                    }
+                    else{
+                        accModel.addAccount(newAAccount);
+                    }
+                    break;
+                case 1:
+                    LiabilityAccount newLAccount = new LiabilityAccount(Integer.parseInt(cAccountNumField.getText().trim()), cAccountNameField.getText().trim(), Double.parseDouble(cAccountAmtField.getText().trim()));
+                    if(dupPos(newLAccount) >= 0){
+                        accModel.getAccounts().get(dupPos(newLAccount)).setAmt(newLAccount.getAmt() + accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
+                    }
+                    else{
+                        accModel.addAccount(newLAccount);
+                    }
+                    break;
+                case 2:
+                    OwnersEquityAccount newOEAccount = new OwnersEquityAccount(Integer.parseInt(cAccountNumField.getText().trim()), cAccountNameField.getText().trim(), Double.parseDouble(cAccountAmtField.getText().trim()));
+                    if(dupPos(newOEAccount) >= 0){
+                        accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(newOEAccount.getAmt() + accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
+                    }
+                    else{
+                        accModel.addAccount(newOEAccount);
+                    }
+                    break;
+            }
         }
-        
         updateTable();
+        clearInputArea();
         accModel.writeToAccountingDataFile();
     }
     
@@ -118,10 +151,11 @@ public class FXMLDocumentController implements Initializable {
         accModel.setCreditSelIndex(selectionModelC.getSelectedIndex());
     }
     
-    //updates TableView table
+    //updates TableView table 
     public void updateTable(){
         ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
         table.setItems(accnt);
+        table.refresh();
     }
     
     //checks to see if input is a int
@@ -231,5 +265,18 @@ public class FXMLDocumentController implements Initializable {
         }
         return -1;
     }
+    
+    //resets the field area
+    public void clearInputArea(){
+        selectionModelD.clearSelection();
+        selectionModelC.clearSelection();
+        dAccountNameField.setText("");
+        dAccountNumField.setText("");
+        dAccountAmtField.setText("");
+        cAccountNameField.setText("");
+        cAccountNumField.setText("");
+        cAccountAmtField.setText("");
+    }
+    
     
 }

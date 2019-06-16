@@ -40,9 +40,8 @@ public class AccountingSoftModel{
     //write to file method
     public void writeToAccountingDataFile(){
         try(PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, false))){
-            Collections.sort(accounts);
             for(Account acc: accounts){
-                writer.println(acc.toStringForFileW());
+                writer.print(acc.toStringForFileW());
             }
         }
         catch(IOException ioe){
@@ -103,6 +102,7 @@ public class AccountingSoftModel{
     //sets next element in Accounts ArrayList
     public void addAccount(Account a){
         accounts.add(a);
+        Collections.sort(accounts);
     }
     
     //returns ACCOUNT_TYPES ArrayList

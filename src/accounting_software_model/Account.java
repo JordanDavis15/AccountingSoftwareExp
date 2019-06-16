@@ -8,6 +8,7 @@ package accounting_software_model;
 public abstract class Account implements Comparable<Account>{
     private String name;
     private double amt;
+    private int num;
     public abstract int getNum();
     public abstract String getNormalSide();
     
