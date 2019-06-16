@@ -45,7 +45,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML TableView table;
     
     
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         accModel = new AccountingSoftModel();
@@ -55,8 +54,6 @@ public class FXMLDocumentController implements Initializable {
         //gets a reference to the SingleSelectionModel
         selectionModelD = AccountSelectionDBox.getSelectionModel();
         selectionModelC = AccountSelectionCBox.getSelectionModel();
-        //selectionModelD.select(accModel.getDebitSelIndex());
-        //selectionModelC.select(accModel.getDebitSelIndex());
         
         //populates table
         ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
@@ -204,6 +201,7 @@ public class FXMLDocumentController implements Initializable {
     
     public boolean isOkToAdd(){
         boolean isOk = true;
+        
         //check debited account num
         if(dAccountNumField.getText().trim() == null || !isInt(dAccountNumField.getText().trim()) || !isInRange('d', Integer.parseInt(dAccountNumField.getText().trim()))){
             dAccountNumField.setText("");
@@ -213,6 +211,7 @@ public class FXMLDocumentController implements Initializable {
         else{
             int dAccNum = Integer.parseInt(dAccountNumField.getText().trim());
         }
+        
         //check credited account num
         if(cAccountNumField.getText().trim() == null || !isInt(cAccountNumField.getText().trim()) || !isInRange('c', Integer.parseInt(cAccountNumField.getText().trim()))){
             cAccountNumField.setText("");
@@ -242,11 +241,9 @@ public class FXMLDocumentController implements Initializable {
         else{
             cAmtGood = true;
         }
+        
         //checks that debited and credited amounts are equal
-        if(dAmtGood && cAmtGood && Double.parseDouble(dAccountAmtField.getText().trim()) == (Double.parseDouble(cAccountAmtField.getText().trim()))){
-            System.out.println("good"); //REMOVE LATER THIS IS FOR DEBUGGING
-        }
-        else{
+        if(dAmtGood == false && cAmtGood == false && Double.parseDouble(dAccountAmtField.getText().trim()) != (Double.parseDouble(cAccountAmtField.getText().trim()))){
             cAccountAmtField.setText("");
             cAccountAmtField.setPromptText("amts mismatch");
             dAccountAmtField.setText("");
@@ -259,7 +256,7 @@ public class FXMLDocumentController implements Initializable {
     //returns negative number if its not a duplicate
     private int dupPos(Account a){
         for(int i = 0; i < accModel.getAccounts().size(); i += 1){
-            if(accModel.getAccounts().get(i).getNum() == a.getNum() || accModel.getAccounts().get(i).getName().equalsIgnoreCase(a.getName())){
+            if(accModel.getAccounts().get(i).getNum() == a.getNum() /*|| accModel.getAccounts().get(i).getName().equalsIgnoreCase(a.getName())//this half checks for duplicate based on name*/){
                 return i;
             }
         }
