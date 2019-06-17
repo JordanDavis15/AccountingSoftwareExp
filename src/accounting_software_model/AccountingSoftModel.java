@@ -20,7 +20,7 @@ public class AccountingSoftModel{
     
     //declares and instantiates accounts ArrayList
     private ArrayList<Account> accounts = new ArrayList<>();
-    private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity", "Revenue", "Expense"};
+    private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity"};
     private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance"};
     private static final Integer[] GUI_COLUMN_HEADER_SPACING = {130, 250, 125};
     private static final String[] TABLE_PVF_FEEDER = {"num", "name", "amt"};
@@ -40,9 +40,8 @@ public class AccountingSoftModel{
     //write to file method
     public void writeToAccountingDataFile(){
         try(PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, false))){
-            Collections.sort(accounts);
             for(Account acc: accounts){
-                writer.println(acc.toStringForFileW());
+                writer.print(acc.toStringForFileW());
             }
         }
         catch(IOException ioe){
@@ -103,6 +102,7 @@ public class AccountingSoftModel{
     //sets next element in Accounts ArrayList
     public void addAccount(Account a){
         accounts.add(a);
+        Collections.sort(accounts);
     }
     
     //returns ACCOUNT_TYPES ArrayList
@@ -140,13 +140,43 @@ public class AccountingSoftModel{
     }
     
     //returns selected index
-    public int getCebitSelIndex(){
+    public int getCreditSelIndex(){
         return creditSelectedIndex;
     }
     
     //sets selected index
-    public void setCebitSelIndex(int creditSelectedIndex){
+    public void setCreditSelIndex(int creditSelectedIndex){
         this.creditSelectedIndex = creditSelectedIndex;
     }
+    
+    //returns lowerNum for each account type
+    public int getLowerNum(int compare){
+        switch (compare){
+            case 0:
+                return new AssetAccount().getLowerNum();
+            case 1:
+                return new LiabilityAccount().getLowerNum();
+            case 2:
+                return new OwnersEquityAccount().getLowerNum();
+            default:
+                return 1;
+        }
+    }
+    
+    //returns higherNum for each account type
+    public int getHigherNum(int compare){
+        switch (compare){
+            case 0:
+                return new AssetAccount().getHigherNum();
+            case 1:
+                return new LiabilityAccount().getHigherNum();
+            case 2:
+                return new OwnersEquityAccount().getHigherNum();
+            default:
+                return -1;
+        }
+    }
+    
+    
     
 }//end of AccountingSoftModel class

@@ -8,7 +8,9 @@ package accounting_software_model;
 public abstract class Account implements Comparable<Account>{
     private String name;
     private double amt;
+    private int num;
     public abstract int getNum();
+    public abstract String getNormalSide();
     
     //default constructor
     public Account(String name, double amt){
@@ -26,20 +28,28 @@ public abstract class Account implements Comparable<Account>{
         return amt;
     }
     
+    //sets amt value
+    public void setAmt(double amt){
+        this.amt = amt;
+    }
+    
+    //default toString
     @Override
     public String toString(){
         return name + "|" + amt + "|";
     }
-    
+
+    //toString for writing to file
     public String toStringForFileW(){
         return name + "," + amt + ",";
     }
     
-    
+    //toString for reading from file
     public String toStringForFileR(){
         return name + "\t\t\t\t\t\t|\t$" + amt + "\t\t\t|";
     }
     
+    //used to sort accounts based on account number
     @Override
     public int compareTo(Account a1){
         int caller = getNum();
@@ -51,7 +61,7 @@ public abstract class Account implements Comparable<Account>{
             return -1;
         }
         else{
-            return 0;
+            return 0; //aka if account nums are the same order from oldest to newest
         }
     }
     

@@ -27,7 +27,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="dAccountNumField" layoutX="850.0" layoutY="145.0" prefHeight="25.0" prefWidth="104.0" />
+      <TextField fx:id="dAccountNumField" layoutX="850.0" layoutY="145.0" prefHeight="25.0" prefWidth="137.0" />
       <Label layoutX="721.0" layoutY="20.0" text="DEBIT:" underline="true">
          <font>
             <Font size="27.0" />
@@ -48,13 +48,13 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <ComboBox fx:id="AccountSelectionCBox" layoutX="850.0" layoutY="249.0" prefHeight="31.0" prefWidth="168.0" promptText="Select Account" />
+      <ComboBox fx:id="AccountSelectionCBox" layoutX="850.0" layoutY="249.0" onHidden="#setCreditedAccIndex" prefHeight="31.0" prefWidth="168.0" promptText="Select Account" />
       <Label layoutX="731.0" layoutY="335.0" text="Account Number:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="cAccountNumField" layoutX="850.0" layoutY="334.0" prefHeight="25.0" prefWidth="104.0" />
+      <TextField fx:id="cAccountNumField" layoutX="850.0" layoutY="334.0" prefHeight="25.0" prefWidth="137.0" />
       <Label layoutX="781.0" layoutY="372.0" text="Amount:$">
          <font>
             <Font size="15.0" />
