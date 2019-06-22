@@ -72,10 +72,10 @@ public class AccountingSoftModel{
                 numStr = sc.next().trim();
                 Double amtInt = Double.parseDouble(numStr);
                 accAmt.add(amtInt);
-
-
             }
             sc.close();
+            
+            //builds the accounts ArrayList
             for(Integer i = 0; i < accName.size(); i++){
                 if(accNum.get(i) >= 1000 && accNum.get(i) < 2000){
                     accounts.add(new AssetAccount( accNum.get(i), accName.get(i), accAmt.get(i)));
