@@ -4,8 +4,12 @@ xcopy build "%inputname%\AccountingSoftwareExp" /s
 xcopy accountingData.txt "%inputname%\AccountingSoftwareExp" /s
 
 rem changes directory to one stored in inputname
-cd "%inputname\AccountingSoftwareExp"
+cd "%inputname%\AccountingSoftwareExp"
 echo cd "%inputname%\AccountingSoftwareExp" >Run.bat
 echo java -cp %inputname%\AccountingSoftwareExp\classes accounting_software_view.AccountingSoftwareExp >> Run.bat
+
+echo.
+echo =======now please navigate to %inputname%\AccountingSoftwareExp and execute run.bat to run the program=======
+echo.
 
 pause
