@@ -8,8 +8,10 @@ cd "%inputname%\AccountingSoftwareExp"
 echo cd "%inputname%\AccountingSoftwareExp" >Run.bat
 echo java -cp %inputname%\AccountingSoftwareExp\classes accounting_software_view.AccountingSoftwareExp >> Run.bat
 
+explorer %inputname%\AccountingSoftwareExp
+
 echo.
-echo =======now please navigate to %inputname%\AccountingSoftwareExp and execute run.bat to run the program=======
+echo ======= please execute the run.bat file in the window that just opened to run the program =======
 echo.
 
 pause
