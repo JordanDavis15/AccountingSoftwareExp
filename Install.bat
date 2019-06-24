@@ -20,7 +20,6 @@ echo $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\EasyAccounting.lnk") >>
 echo $Shortcut.TargetPath = "%inputname%\AccountingSoftwareExp\run.bat" >> makeShortcut.ps1
 echo $Shortcut.Save() >> makeShortcut.ps1
 PowerShell.exe -NoProfile -ExecutionPolicy Bypass -Command "& './makeShortcut.ps1'"
-rem powershell "-noexit" "&" ./makeShortcut.ps1
 del makeShortcut.ps1
 
 pause
