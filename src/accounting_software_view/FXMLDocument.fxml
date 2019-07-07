@@ -16,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accounting_software_controller.FXMLDocumentController">
     <children>
-      <ComboBox fx:id="AccountSelectionDBox" layoutX="850.0" layoutY="60.0" onHidden="#setDebitedAccIndex" prefHeight="31.0" prefWidth="176.0" promptText="Select Account" />
+      <ComboBox fx:id="accountSelectionDBox" layoutX="850.0" layoutY="60.0" onHidden="#setDebitedAccIndex" prefHeight="31.0" prefWidth="176.0" promptText="Select Account" />
       <Label layoutX="850.0" layoutY="39.0" text="Select Account Type:">
          <font>
             <Font size="15.0" />
@@ -48,7 +48,7 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <ComboBox fx:id="AccountSelectionCBox" layoutX="850.0" layoutY="249.0" onHidden="#setCreditedAccIndex" prefHeight="31.0" prefWidth="168.0" promptText="Select Account" />
+      <ComboBox fx:id="accountSelectionCBox" layoutX="850.0" layoutY="249.0" onHidden="#setCreditedAccIndex" prefHeight="31.0" prefWidth="168.0" promptText="Select Account" />
       <Label layoutX="731.0" layoutY="335.0" text="Account Number:">
          <font>
             <Font size="15.0" />
