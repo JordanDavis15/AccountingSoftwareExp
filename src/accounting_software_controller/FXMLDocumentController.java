@@ -265,13 +265,15 @@ public class FXMLDocumentController implements Initializable {
     
     //resets the field area
     public void clearInputArea(){
+        //clears debit section
         selectionModelD.clearSelection();
-        selectionModelC.clearSelection();
         accountSelectionDBox.setPromptText("Select Account");
-        accountSelectionCBox.setPromptText("Select Account");
         dAccountNameField.setText("Select Account");
         dAccountNumField.setText("");
         dAccountAmtField.setText("");
+        //clears credit section
+        selectionModelC.clearSelection();
+        accountSelectionCBox.setPromptText("Select Account");
         cAccountNameField.setText("");
         cAccountNumField.setText("");
         cAccountAmtField.setText("");
