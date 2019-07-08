@@ -1,21 +1,23 @@
-@echo off
-SET /P inputname= Enter path for installation(ex. C:\Program Files): 
-xcopy build "%inputname%\AccountingSoftwareExp" /s
-xcopy accountingData.txt "%inputname%\AccountingSoftwareExp" /s
+@echo off 
 
-rem changes directory to one stored in inputname
-cd "%inputname%\AccountingSoftwareExp"
-echo cd "%inputname%\AccountingSoftwareExp" > Run.bat
-echo java -cp %inputname%\AccountingSoftwareExp\classes accounting_software_view.AccountingSoftwareExp >> Run.bat
+SET tempPlace=C:\temp
+SET destPlace=C:\Users\%USERNAME%\Documents
+
+xcopy build "%destPlace%\AccountingSoftwareExp" /s
+xcopy accountingData.txt "%destPlace%\AccountingSoftwareExp" /s
+
+rem changes directory to one stored in destPlace
+cd "%destPlace%\AccountingSoftwareExp"
+ECHO cd "%destPlace%\AccountingSoftwareExp" > Run.bat
+ECHO java -cp %destPlace%\AccountingSoftwareExp\classes accounting_software_view.AccountingSoftwareExp >> Run.bat
 
 rem this adds a Desktop shortcut
-echo $WshShell = New-Object -comObject WScript.Shell > makeShortcut.ps1
-echo $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\EasyAccounting.lnk") >> makeShortcut.ps1
-echo $Shortcut.TargetPath = "%inputname%\AccountingSoftwareExp\run.bat" >> makeShortcut.ps1
-echo $Shortcut.Save() >> makeShortcut.ps1
+ECHO $WshShell = New-Object -comObject WScript.Shell > makeShortcut.ps1
+ECHO $Shortcut = $WshShell.CreateShortcut("$Home\Desktop\EasyAccounting.lnk") >> makeShortcut.ps1
+ECHO $Shortcut.TargetPath = "%destPlace%\AccountingSoftwareExp\run.bat" >> makeShortcut.ps1
+ECHO $Shortcut.Save() >> makeShortcut.ps1
 PowerShell.exe -NoProfile -ExecutionPolicy Bypass -Command "& './makeShortcut.ps1'"
 del makeShortcut.ps1
 
-echo A shortcut has been placed on your desktop
-
-pause
+ECHO A shortcut has been placed on your desktop
+PAUSE

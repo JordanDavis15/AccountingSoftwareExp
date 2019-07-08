@@ -34,8 +34,8 @@ public class FXMLDocumentController implements Initializable {
     private final ArrayList<TableColumn> headers = new ArrayList<>();
     
     @FXML Button processJournalButton;
-    @FXML ComboBox AccountSelectionDBox;
-    @FXML ComboBox AccountSelectionCBox;
+    @FXML ComboBox accountSelectionDBox;
+    @FXML ComboBox accountSelectionCBox;
     @FXML TextField dAccountNameField;
     @FXML TextField dAccountNumField;
     @FXML TextField dAccountAmtField;
@@ -48,12 +48,12 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         accModel = new AccountingSoftModel();
-        AccountSelectionDBox.getItems().addAll(accModel.getAccountTypes());
-        AccountSelectionCBox.getItems().addAll(accModel.getAccountTypes());
+        accountSelectionDBox.getItems().addAll(accModel.getAccountTypes());
+        accountSelectionCBox.getItems().addAll(accModel.getAccountTypes());
         
         //gets a reference to the SingleSelectionModel
-        selectionModelD = AccountSelectionDBox.getSelectionModel();
-        selectionModelC = AccountSelectionCBox.getSelectionModel();
+        selectionModelD = accountSelectionDBox.getSelectionModel();
+        selectionModelC = accountSelectionCBox.getSelectionModel();
         
         //populates table
         ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
@@ -243,7 +243,7 @@ public class FXMLDocumentController implements Initializable {
         }
         
         //checks that debited and credited amounts are equal
-        if(dAmtGood == false && cAmtGood == false && Double.parseDouble(dAccountAmtField.getText().trim()) != (Double.parseDouble(cAccountAmtField.getText().trim()))){
+        if(dAmtGood == false && cAmtGood == false && dAccountAmtField.getText() == null && cAccountAmtField.getText() == null && Double.parseDouble(dAccountAmtField.getText().trim()) != (Double.parseDouble(cAccountAmtField.getText().trim()))){
             cAccountAmtField.setText("");
             cAccountAmtField.setPromptText("amts mismatch");
             dAccountAmtField.setText("");
@@ -265,11 +265,15 @@ public class FXMLDocumentController implements Initializable {
     
     //resets the field area
     public void clearInputArea(){
+        //clears debit section
         selectionModelD.clearSelection();
-        selectionModelC.clearSelection();
-        dAccountNameField.setText("");
+        accountSelectionDBox.setPromptText("Select Account");
+        dAccountNameField.setText("Select Account");
         dAccountNumField.setText("");
         dAccountAmtField.setText("");
+        //clears credit section
+        selectionModelC.clearSelection();
+        accountSelectionCBox.setPromptText("Select Account");
         cAccountNameField.setText("");
         cAccountNumField.setText("");
         cAccountAmtField.setText("");
