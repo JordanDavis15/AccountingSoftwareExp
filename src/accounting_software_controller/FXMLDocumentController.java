@@ -17,6 +17,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
@@ -43,6 +45,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML TextField cAccountNumField;
     @FXML TextField cAccountAmtField;
     @FXML TableView table;
+    @FXML Button helpButton;
     
     
     @Override
@@ -153,6 +156,16 @@ public class FXMLDocumentController implements Initializable {
         ObservableList<Account> accnt = FXCollections.observableArrayList(accModel.getAccounts());
         table.setItems(accnt);
         table.refresh();
+    }
+    
+    //displays a dialog window to assist user
+    public void displayHelp(){
+        Alert helpBox = new Alert(AlertType.INFORMATION);
+        helpBox.setTitle("Help");
+        helpBox.setHeaderText("More information");
+        helpBox.setContentText("How to use: ADD INSTRUCTIONS");
+
+        helpBox.showAndWait();
     }
     
     //checks to see if input is a int

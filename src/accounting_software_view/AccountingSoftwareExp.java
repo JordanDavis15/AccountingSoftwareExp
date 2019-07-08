@@ -27,7 +27,7 @@ public class AccountingSoftwareExp extends Application {
         stage.setTitle("Simple Books");
         stage.show();
     }
-
+    
     public static void main(String[] args) {
         launch(args);
     }

@@ -75,5 +75,10 @@
       </Label>
       <TextField fx:id="dAccountNameField" layoutX="850.0" layoutY="106.0" prefHeight="25.0" prefWidth="176.0" />
       <TextField fx:id="cAccountNameField" layoutX="850.0" layoutY="298.0" prefHeight="25.0" prefWidth="176.0" />
+      <Button fx:id="helpButton" layoutX="14.0" layoutY="565.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="23.0" prefWidth="40.0" text="Help">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
