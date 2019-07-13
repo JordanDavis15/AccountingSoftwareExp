@@ -44,7 +44,7 @@ public class AccountingSoftModel{
     public void writeToAccountingDataFile(){
         try(PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, false))){
             for(Account acc: accounts){
-                writer.print(acc.toStringForFileW());
+                writer.print(acc.toStringForFileW() + "\n");
             }
         }
         catch(IOException ioe){

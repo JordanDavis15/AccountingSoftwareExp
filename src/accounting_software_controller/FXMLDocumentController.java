@@ -283,7 +283,7 @@ public class FXMLDocumentController implements Initializable {
         //clears debit section
         selectionModelD.clearSelection();
         accountSelectionDBox.setPromptText("Select Account");
-        dAccountNameField.setText("Select Account");
+        dAccountNameField.setText("");
         dAccountNumField.setText("");
         dAccountAmtField.setText("");
         //clears credit section
@@ -302,7 +302,7 @@ public class FXMLDocumentController implements Initializable {
         for(int i = 0; i < accModel.getAccounts().size(); i++){
             tA.appendText(AccountsList.get(i).toString() + "\n");
         }
-        tA.setMaxHeight(100000000);
+        tA.setMaxHeight(AccountsList.size()*12);
         Node n = tA;
         PrinterJob job = PrinterJob.createPrinterJob();
         if (job != null){
