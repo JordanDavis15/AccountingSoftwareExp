@@ -24,6 +24,9 @@ public class AccountingSoftModel{
     private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance"};
     private static final Integer[] GUI_COLUMN_HEADER_SPACING = {130, 250, 125};
     private static final String[] TABLE_PVF_FEEDER = {"num", "name", "amt"};
+    private static final int NumberIndexInFile = 0;
+    private static final int NameIndexInFile = 1;
+    private static final int AmtIndexInFile = 2;
     private int debitSelectedIndex = 0;
     private int creditSelectedIndex = 0;
     
@@ -53,23 +56,25 @@ public class AccountingSoftModel{
     //read from file method
     public void readFromFileAndAppendAccounts(){
         try(Scanner sc = new Scanner(new File(FILE_NAME))){
-            sc.useDelimiter(",");
+            
             ArrayList<String> accName = new ArrayList<>();
             ArrayList<Integer> accNum = new ArrayList<>();
             ArrayList<Double> accAmt = new ArrayList<>();
-
+            sc.useDelimiter("\n");
             //read line by line
             while(sc.hasNext()){
+                String line = sc.next();
+                String[] splitLine = line.split(",");
                 //reads in accNum
-                String numStr = sc.next().trim();
+                String numStr = splitLine[NumberIndexInFile].trim();
                 Integer numInt = Integer.parseInt(numStr);
                 accNum.add(numInt);
 
                 //reads in accName
-                accName.add(sc.next().trim());
+                accName.add(splitLine[NameIndexInFile].trim());
 
                 //reads in accAmt
-                numStr = sc.next().trim();
+                numStr = splitLine[AmtIndexInFile].trim();
                 Double amtInt = Double.parseDouble(numStr);
                 accAmt.add(amtInt);
             }

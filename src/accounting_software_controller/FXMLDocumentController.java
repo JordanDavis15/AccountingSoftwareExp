@@ -17,6 +17,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -24,6 +26,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -164,7 +167,6 @@ public class FXMLDocumentController implements Initializable {
         helpBox.setTitle("Help");
         helpBox.setHeaderText("More information");
         helpBox.setContentText("How to use: ADD INSTRUCTIONS");
-
         helpBox.showAndWait();
     }
     
@@ -292,5 +294,26 @@ public class FXMLDocumentController implements Initializable {
         cAccountAmtField.setText("");
     }
     
+    //this prints the current contents of the table to the devices default printer
+    public void print(){
+        TextArea tA = new TextArea();
+        tA.setText("\nNumber, Name, Amt\n");
+        ArrayList<Account> AccountsList =  accModel.getAccounts();
+        for(int i = 0; i < accModel.getAccounts().size(); i++){
+            tA.appendText(AccountsList.get(i).toString() + "\n");
+        }
+        tA.setMaxHeight(100000000);
+        Node n = tA;
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null){
+            boolean success = job.printPage(n);
+            if (success){
+                job.endJob();
+            }
+            else{
+                System.out.println("Printing failed");
+            }
+        }
+    }
     
 }

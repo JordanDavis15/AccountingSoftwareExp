@@ -36,7 +36,7 @@ public class AssetAccount extends Account{
     //default toString
     @Override
     public String toString(){
-        return num + "|" + super.toString();
+        return num + "," + super.toString();
     }
     
     //toString for writing to file
