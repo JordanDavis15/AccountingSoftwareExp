@@ -10,6 +10,9 @@ import accounting_software_model.AccountingSoftModel;
 import accounting_software_model.AssetAccount;
 import accounting_software_model.LiabilityAccount;
 import accounting_software_model.OwnersEquityAccount;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -296,24 +299,37 @@ public class FXMLDocumentController implements Initializable {
     
     //this prints the current contents of the table to the devices default printer
     public void print(){
-        TextArea tA = new TextArea();
-        tA.setText("\nNumber, Name, Amt\n");
-        ArrayList<Account> AccountsList =  accModel.getAccounts();
-        for(int i = 0; i < accModel.getAccounts().size(); i++){
-            tA.appendText(AccountsList.get(i).toString() + "\n");
-        }
-        tA.setMaxHeight(AccountsList.size()*12);
-        Node n = tA;
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null){
-            boolean success = job.printPage(n);
-            if (success){
-                job.endJob();
-            }
-            else{
-                System.out.println("Printing failed");
+        String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents";
+        //creates csv file to open in excel
+        try(PrintWriter writer = new PrintWriter(new FileWriter(path, false))){
+            writer.print("Account Number, Account Name, Current Amount\n");
+            for(Account acc: accModel.getAccounts()){
+                writer.print(acc.toString() + "\n");
             }
         }
+        catch(IOException ioe){
+            System.out.println("Whoops somethin is screwed up");
+        }
+        
+        //attempt to print on printer
+//        TextArea tA = new TextArea();
+//        tA.setText("\nNumber, Name, Amt\n");
+//        ArrayList<Account> AccountsList =  accModel.getAccounts();
+//        for(int i = 0; i < accModel.getAccounts().size(); i++){
+//            tA.appendText(AccountsList.get(i).toString() + "\n");
+//        }
+//        tA.setMaxHeight(AccountsList.size()*12);
+//        Node n = tA;
+//        PrinterJob job = PrinterJob.createPrinterJob();
+//        if (job != null){
+//            boolean success = job.printPage(n);
+//            if (success){
+//                job.endJob();
+//            }
+//            else{
+//                System.out.println("Printing failed");
+//            }
+//        }
     }
     
 }
