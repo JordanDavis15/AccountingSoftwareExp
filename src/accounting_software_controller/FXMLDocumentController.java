@@ -267,6 +267,13 @@ public class FXMLDocumentController implements Initializable {
             dAccountAmtField.setPromptText("amts mismatch");
             isOk = false;
         }
+        
+        //checks to see if either name contains a comma
+        if(dAccountNameField.getText().contains(",") || cAccountNameField.getText().contains(",")){
+            dAccountNameField.setText("No Commas");
+            cAccountNameField.setText("No Commas");
+            return false;
+        }
         return isOk;
     }
     
