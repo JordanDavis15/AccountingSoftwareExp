@@ -20,8 +20,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.print.PrinterJob;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -29,9 +27,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -299,37 +298,32 @@ public class FXMLDocumentController implements Initializable {
     
     //this prints the current contents of the table to the devices default printer
     public void print(){
-        String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents";
+        
+        Stage s = new Stage();
+        DirectoryChooser dc = new DirectoryChooser();
+        dc.setTitle("Select CSV destination");
+        long millis=System.currentTimeMillis();  
+        java.sql.Date date=new java.sql.Date(millis);
+        String path = dc.showDialog(s).getAbsolutePath() + "\\Current-Balances-" + date + ".csv";
+
         //creates csv file to open in excel
         try(PrintWriter writer = new PrintWriter(new FileWriter(path, false))){
             writer.print("Account Number, Account Name, Current Amount\n");
             for(Account acc: accModel.getAccounts()){
                 writer.print(acc.toString() + "\n");
             }
+            writer.flush();
+            writer.close();
+            
+        Alert SavedBox = new Alert(AlertType.INFORMATION);
+        SavedBox.setTitle("Confirmation");
+        SavedBox.setHeaderText("Save Successful");
+        SavedBox.showAndWait();
         }
         catch(IOException ioe){
-            System.out.println("Whoops somethin is screwed up");
+            System.out.println(ioe.getMessage());
         }
-        
-        //attempt to print on printer
-//        TextArea tA = new TextArea();
-//        tA.setText("\nNumber, Name, Amt\n");
-//        ArrayList<Account> AccountsList =  accModel.getAccounts();
-//        for(int i = 0; i < accModel.getAccounts().size(); i++){
-//            tA.appendText(AccountsList.get(i).toString() + "\n");
-//        }
-//        tA.setMaxHeight(AccountsList.size()*12);
-//        Node n = tA;
-//        PrinterJob job = PrinterJob.createPrinterJob();
-//        if (job != null){
-//            boolean success = job.printPage(n);
-//            if (success){
-//                job.endJob();
-//            }
-//            else{
-//                System.out.println("Printing failed");
-//            }
-//        }
+       
     }
     
 }
