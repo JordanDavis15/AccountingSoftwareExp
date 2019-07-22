@@ -93,7 +93,7 @@ public class FXMLDocumentController implements Initializable {
                 case 1:
                     LiabilityAccount newLAccount = new LiabilityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
                     if(dupPos(newLAccount) >= 0){
-                        accModel.getAccounts().get(dupPos(newLAccount)).setAmt(newLAccount.getAmt() - accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
+                        accModel.getAccounts().get(dupPos(newLAccount)).setAmt(-1 * newLAccount.getAmt() - accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
                     }
                     else{
                         accModel.addAccount(newLAccount);
@@ -102,7 +102,7 @@ public class FXMLDocumentController implements Initializable {
                 case 2:
                     OwnersEquityAccount newOEAccount = new OwnersEquityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
                     if(dupPos(newOEAccount) >= 0){
-                        accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(newOEAccount.getAmt() - accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
+                        accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(-1 * newOEAccount.getAmt() - accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
                     }
                     else{
                         accModel.addAccount(newOEAccount);
@@ -115,7 +115,7 @@ public class FXMLDocumentController implements Initializable {
                 case 0:
                     AssetAccount newAAccount = new AssetAccount(Integer.parseInt(cAccountNumField.getText().trim()), cAccountNameField.getText().trim(), Double.parseDouble(cAccountAmtField.getText().trim()));
                     if(dupPos(newAAccount) >= 0){
-                        accModel.getAccounts().get(dupPos(newAAccount)).setAmt(newAAccount.getAmt() - accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
+                        accModel.getAccounts().get(dupPos(newAAccount)).setAmt(-1 * newAAccount.getAmt() - accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
                     }
                     else{
                         accModel.addAccount(newAAccount);
@@ -310,7 +310,7 @@ public class FXMLDocumentController implements Initializable {
         DirectoryChooser dc = new DirectoryChooser();
         dc.setTitle("Select CSV destination");
         long millis=System.currentTimeMillis();  
-        java.sql.Date date=new java.sql.Date(millis);
+        java.sql.Date date = new java.sql.Date(millis);
         String path = dc.showDialog(s).getAbsolutePath() + "\\Current-Balances-" + date + ".csv";
 
         //creates csv file to open in excel

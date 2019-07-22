@@ -21,12 +21,12 @@ public class AccountingSoftModel{
     //declares and instantiates accounts ArrayList
     private ArrayList<Account> accounts = new ArrayList<>();
     private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity"};
-    private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance"};
+    private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance($)"};
     private static final Integer[] GUI_COLUMN_HEADER_SPACING = {130, 250, 125};
     private static final String[] TABLE_PVF_FEEDER = {"num", "name", "amt"};
-    private static final int NumberIndexInFile = 0;
-    private static final int NameIndexInFile = 1;
-    private static final int AmtIndexInFile = 2;
+    private static final int NUMBER_INDEX_IN_FILE = 0;
+    private static final int NAME_INDEX_IN_FILE = 1;
+    private static final int AMT_INDEX_IN_FILE = 2;
     private int debitSelectedIndex = 0;
     private int creditSelectedIndex = 0;
     
@@ -66,15 +66,15 @@ public class AccountingSoftModel{
                 String line = sc.next();
                 String[] splitLine = line.split(",");
                 //reads in accNum
-                String numStr = splitLine[NumberIndexInFile].trim();
+                String numStr = splitLine[NUMBER_INDEX_IN_FILE].trim();
                 Integer numInt = Integer.parseInt(numStr);
                 accNum.add(numInt);
 
                 //reads in accName
-                accName.add(splitLine[NameIndexInFile].trim());
+                accName.add(splitLine[NAME_INDEX_IN_FILE].trim());
 
                 //reads in accAmt
-                numStr = splitLine[AmtIndexInFile].trim();
+                numStr = splitLine[AMT_INDEX_IN_FILE].trim();
                 Double amtInt = Double.parseDouble(numStr);
                 accAmt.add(amtInt);
             }
