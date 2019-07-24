@@ -36,12 +36,12 @@ public abstract class Account implements Comparable<Account>{
     //default toString
     @Override
     public String toString(){
-        return name + "|" + amt + "|";
+        return name + ",$" + amt;
     }
 
     //toString for writing to file
     public String toStringForFileW(){
-        return name + "," + amt + ",";
+        return name + "," + amt;
     }
     
     //toString for reading from file

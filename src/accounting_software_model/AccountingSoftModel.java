@@ -21,9 +21,12 @@ public class AccountingSoftModel{
     //declares and instantiates accounts ArrayList
     private ArrayList<Account> accounts = new ArrayList<>();
     private static final String[] ACCOUNT_TYPES = {"Asset", "Liability", "Owners Equity"};
-    private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance"};
+    private static final String[] GUI_COLUMN_HEADERS = {"Account Number", "Account", "Balance($)"};
     private static final Integer[] GUI_COLUMN_HEADER_SPACING = {130, 250, 125};
     private static final String[] TABLE_PVF_FEEDER = {"num", "name", "amt"};
+    private static final int NUMBER_INDEX_IN_FILE = 0;
+    private static final int NAME_INDEX_IN_FILE = 1;
+    private static final int AMT_INDEX_IN_FILE = 2;
     private int debitSelectedIndex = 0;
     private int creditSelectedIndex = 0;
     
@@ -41,7 +44,7 @@ public class AccountingSoftModel{
     public void writeToAccountingDataFile(){
         try(PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME, false))){
             for(Account acc: accounts){
-                writer.print(acc.toStringForFileW());
+                writer.print(acc.toStringForFileW() + "\n");
             }
         }
         catch(IOException ioe){
@@ -53,23 +56,25 @@ public class AccountingSoftModel{
     //read from file method
     public void readFromFileAndAppendAccounts(){
         try(Scanner sc = new Scanner(new File(FILE_NAME))){
-            sc.useDelimiter(",");
+            
             ArrayList<String> accName = new ArrayList<>();
             ArrayList<Integer> accNum = new ArrayList<>();
             ArrayList<Double> accAmt = new ArrayList<>();
-
+            sc.useDelimiter("\n");
             //read line by line
             while(sc.hasNext()){
+                String line = sc.next();
+                String[] splitLine = line.split(",");
                 //reads in accNum
-                String numStr = sc.next().trim();
+                String numStr = splitLine[NUMBER_INDEX_IN_FILE].trim();
                 Integer numInt = Integer.parseInt(numStr);
                 accNum.add(numInt);
 
                 //reads in accName
-                accName.add(sc.next().trim());
+                accName.add(splitLine[NAME_INDEX_IN_FILE].trim());
 
                 //reads in accAmt
-                numStr = sc.next().trim();
+                numStr = splitLine[AMT_INDEX_IN_FILE].trim();
                 Double amtInt = Double.parseDouble(numStr);
                 accAmt.add(amtInt);
             }

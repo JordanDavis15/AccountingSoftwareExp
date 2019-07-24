@@ -24,10 +24,10 @@ public class AccountingSoftwareExp extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setTitle("EXcel REplacer");
+        stage.setTitle("Simple Books");
         stage.show();
     }
-
+    
     public static void main(String[] args) {
         launch(args);
     }
