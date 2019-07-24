@@ -91,18 +91,18 @@ public class FXMLDocumentController implements Initializable {
                     }
                     break;
                 case 1:
-                    LiabilityAccount newLAccount = new LiabilityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
+                    LiabilityAccount newLAccount = new LiabilityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), -1 * Double.parseDouble(dAccountAmtField.getText().trim()));
                     if(dupPos(newLAccount) >= 0){
-                        accModel.getAccounts().get(dupPos(newLAccount)).setAmt(-1 * newLAccount.getAmt() - accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
+                        accModel.getAccounts().get(dupPos(newLAccount)).setAmt(newLAccount.getAmt() - accModel.getAccounts().get(dupPos(newLAccount)).getAmt());
                     }
                     else{
                         accModel.addAccount(newLAccount);
                     }
                     break;
                 case 2:
-                    OwnersEquityAccount newOEAccount = new OwnersEquityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), Double.parseDouble(dAccountAmtField.getText().trim()));
+                    OwnersEquityAccount newOEAccount = new OwnersEquityAccount(Integer.parseInt(dAccountNumField.getText().trim()), dAccountNameField.getText().trim(), -1 * Double.parseDouble(dAccountAmtField.getText().trim()));
                     if(dupPos(newOEAccount) >= 0){
-                        accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(-1 * newOEAccount.getAmt() - accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
+                        accModel.getAccounts().get(dupPos(newOEAccount)).setAmt(newOEAccount.getAmt() - accModel.getAccounts().get(dupPos(newOEAccount)).getAmt());
                     }
                     else{
                         accModel.addAccount(newOEAccount);
@@ -113,9 +113,9 @@ public class FXMLDocumentController implements Initializable {
             //process the credit section of the input
             switch(accModel.getCreditSelIndex()){
                 case 0:
-                    AssetAccount newAAccount = new AssetAccount(Integer.parseInt(cAccountNumField.getText().trim()), cAccountNameField.getText().trim(), Double.parseDouble(cAccountAmtField.getText().trim()));
+                    AssetAccount newAAccount = new AssetAccount(Integer.parseInt(cAccountNumField.getText().trim()), cAccountNameField.getText().trim(), -1 * Double.parseDouble(cAccountAmtField.getText().trim()));
                     if(dupPos(newAAccount) >= 0){
-                        accModel.getAccounts().get(dupPos(newAAccount)).setAmt(-1 * newAAccount.getAmt() - accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
+                        accModel.getAccounts().get(dupPos(newAAccount)).setAmt(newAAccount.getAmt() - accModel.getAccounts().get(dupPos(newAAccount)).getAmt());
                     }
                     else{
                         accModel.addAccount(newAAccount);
@@ -304,17 +304,19 @@ public class FXMLDocumentController implements Initializable {
     }
     
     //this prints the current contents of the table to the devices default printer
-    public void print(){
+    public void exportToCSV(){
         
         Stage s = new Stage();
         DirectoryChooser dc = new DirectoryChooser();
         dc.setTitle("Select CSV destination");
         long millis=System.currentTimeMillis();  
         java.sql.Date date = new java.sql.Date(millis);
-        String path = dc.showDialog(s).getAbsolutePath() + "\\Current-Balances-" + date + ".csv";
-
+        String fileName = "Current-Balances-" + date + ".csv";
+        String path = dc.showDialog(s).getAbsolutePath();
+        String fullLocation =  path + "\\" + fileName;
+                
         //creates csv file to open in excel
-        try(PrintWriter writer = new PrintWriter(new FileWriter(path, false))){
+        try(PrintWriter writer = new PrintWriter(new FileWriter(fullLocation, false))){
             writer.print("Account Number, Account Name, Current Amount\n");
             for(Account acc: accModel.getAccounts()){
                 writer.print(acc.toString() + "\n");
@@ -322,15 +324,15 @@ public class FXMLDocumentController implements Initializable {
             writer.flush();
             writer.close();
             
-        Alert SavedBox = new Alert(AlertType.INFORMATION);
-        SavedBox.setTitle("Confirmation");
-        SavedBox.setHeaderText("Save Successful");
-        SavedBox.showAndWait();
+        Alert savedBox = new Alert(AlertType.INFORMATION);
+        savedBox.setTitle("Confirmation");
+        savedBox.setHeaderText("Save Successful");
+        savedBox.setContentText(fileName + " has been saved in the selected directory"
+                + " (" + path + ")");
+        savedBox.showAndWait();
         }
         catch(IOException ioe){
             System.out.println(ioe.getMessage());
         }
-       
     }
-    
 }

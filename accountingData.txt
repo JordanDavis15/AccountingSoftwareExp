@@ -1,4 +1,0 @@
-1001,Cash,-10.0
-1002,Building,5500.0
-2001,A/P,1000.0
-2002,Unearned Revenue,-10.0
