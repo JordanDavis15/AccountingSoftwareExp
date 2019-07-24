@@ -1,12 +1,17 @@
 @ECHO off
+COLOR 0E
 SET tempPlace=C:\temp\AccountingSoftwareExp
 SET destPlace=C:\Users\%USERNAME%\Documents\AccountingSoftwareExp
+
+ECHO =================================================================
+ECHO ====== DO NOT CLOSE THIS WINDOW UNTIL INSTALL IS COMPLETE =======
+ECHO =================================================================
 
 git clone https://github.com/JordanDavis15/AccountingSoftwareExp.git %tempPlace%
 
 xcopy "%tempPlace%\build" "%destPlace%" /s /y
 IF EXIST "%destPlace%\accountingData.txt" (
-	ECHO data already exists...will not overwrite
+	ECHO data file already exists...will not overwrite
 )ELSE (
 	xcopy "%tempPlace%\accountingData.txt" "%destPlace%" /s
 )
