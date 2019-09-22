@@ -168,7 +168,14 @@ public class FXMLDocumentController implements Initializable {
         Alert helpBox = new Alert(AlertType.INFORMATION);
         helpBox.setTitle("Help");
         helpBox.setHeaderText("More information");
-        helpBox.setContentText("How to use: ADD INSTRUCTIONS");
+        helpBox.setContentText("How to use: Enter the appropriate information"
+                + " into the designated fields. Never enter a negative number"
+                + " into either the Amount fields or into the Account Number"
+                + " fields. If a negative number is desired it must be achieved"
+                + " through rules of debits and credits. If this help does not"
+                + " suffice please contact the developer at: jadavis7776@yahoo"
+                + ".com. Please make the subject of the email clearly relate to"
+                + " this software.");
         helpBox.showAndWait();
     }
     
