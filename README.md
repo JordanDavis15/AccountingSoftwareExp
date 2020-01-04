@@ -7,10 +7,9 @@ Development of basic ledger generator -- adding new features on a semiregular ba
 ------------------------------------------------------------------------------------------------------------------------
 ### How to install
 - Windows: 
-	- STABLE: See releases tab and download required software and the installV_2.bat file. Only execute that .bat file to install after the required software has been downloaded and installed.
-	- UNSTABLE: click clone or download the repository > download zip > navigate to the location in which you saved it > right-click and extract all > execute installV_2.bat > click more info and the run anyways > wait for short-cut to appear on desktop
+	- STABLE: See releases tab and download required software and the installV_2.bat file. Execute the installV_2.bat file to install only after the required software has been downloaded and installed. After the installation has completed a shortcut will appear on the desktop.
 - Mac: no current automated install
 - Linux: no current automated install
 #### Required software
 - git download: https://git-scm.com/downloads
-- Java download: https://www.java.com/en/download/
+- Java 8 download: https://www.java.com/en/download/
