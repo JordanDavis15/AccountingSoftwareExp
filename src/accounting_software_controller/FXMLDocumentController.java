@@ -319,7 +319,15 @@ public class FXMLDocumentController implements Initializable {
         long millis=System.currentTimeMillis();  
         java.sql.Date date = new java.sql.Date(millis);
         String fileName = "Current-Balances-" + date + ".csv";
-        String path = dc.showDialog(s).getAbsolutePath();
+        String path = "";
+        try{      //this is used when user clicks the close button on the file chooser window
+            path = dc.showDialog(s).getAbsolutePath();
+        }
+        catch(NullPointerException e){
+            System.out.println(e.toString());
+            System.out.println("User clicked close while file chooser was open -- returning from method -- noncritical error");
+            return;
+        }
         String fullLocation =  path + "\\" + fileName;
                 
         //creates csv file to open in excel
