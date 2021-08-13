@@ -326,7 +326,10 @@ public class FXMLDocumentController implements Initializable {
         catch(NullPointerException e){
             System.out.println(e.toString());
             System.out.println("User clicked close while file chooser was open -- returning from method -- noncritical error");
-            return;
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            System.out.println("returning from method -- noncritical error");
         }
         String fullLocation =  path + "\\" + fileName;
                 
@@ -348,6 +351,25 @@ public class FXMLDocumentController implements Initializable {
         }
         catch(IOException ioe){
             System.out.println(ioe.getMessage());
+        }
+    }
+    
+    public void importFromCsv(){
+        Stage s = new Stage();
+        DirectoryChooser dc = new DirectoryChooser();
+        dc.setTitle("Select CSV destination");  
+        String path = "";
+        try{      //this is used when user clicks the close button on the file chooser window
+            path = dc.showDialog(s).getAbsolutePath();
+            accModel.readFromFileAndAppendAccounts(path);
+        }
+        catch(NullPointerException e){
+            System.out.println(e.toString());
+            System.out.println("User clicked close while file chooser was open -- returning from method -- noncritical error");
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            System.out.println("returning from method -- noncritical error");
         }
     }
 }

@@ -36,7 +36,7 @@ public class AccountingSoftModel{
     
     //constructor
     public AccountingSoftModel(){
-        readFromFileAndAppendAccounts();
+        readFromFileAndAppendAccounts(FILE_NAME);
     }
     
     
@@ -48,14 +48,14 @@ public class AccountingSoftModel{
             }
         }
         catch(IOException ioe){
-            System.out.println("Whoops somethin is screwed up");
+            System.out.println("Whoops something is messed up");
         }
     }
     
     
     //read from file method
-    public void readFromFileAndAppendAccounts(){
-        try(Scanner sc = new Scanner(new File(FILE_NAME))){
+    public void readFromFileAndAppendAccounts(String name){
+        try(Scanner sc = new Scanner(new File(name))){
             
             ArrayList<String> accName = new ArrayList<>();
             ArrayList<Integer> accNum = new ArrayList<>();

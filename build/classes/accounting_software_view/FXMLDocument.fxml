@@ -85,5 +85,10 @@
             <Font size="11.0" />
           </font>
       </Button>
+      <Button fx:id="ImportButton" layoutX="175.0" layoutY="565.0" onAction="#importFromCsv" prefHeight="23.0"  text="Import from csv">
+          <font>
+            <Font size="11.0" />
+          </font>
+      </Button>
     </children>
 </AnchorPane>
