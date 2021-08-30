@@ -36,7 +36,7 @@ public class AccountingSoftModel{
     
     //constructor
     public AccountingSoftModel(){
-        readFromFileAndAppendAccounts(FILE_NAME);
+        readFromFileAndAppendAccounts(FILE_NAME, false);
     }
     
     
@@ -54,7 +54,7 @@ public class AccountingSoftModel{
     
     
     //read from file method
-    public void readFromFileAndAppendAccounts(String name){
+    public void readFromFileAndAppendAccounts(String name, Boolean loading){
         try(Scanner sc = new Scanner(new File(name))){
             
             ArrayList<String> accName = new ArrayList<>();
@@ -62,6 +62,9 @@ public class AccountingSoftModel{
             ArrayList<Double> accAmt = new ArrayList<>();
             sc.useDelimiter("\n");
             //read line by line
+            if(loading){
+                sc.next();      //ignores file header line from saved file
+            }
             while(sc.hasNext()){
                 String line = sc.next();
                 String[] splitLine = line.split(",");
@@ -74,7 +77,13 @@ public class AccountingSoftModel{
                 accName.add(splitLine[NAME_INDEX_IN_FILE].trim());
 
                 //reads in accAmt
-                numStr = splitLine[AMT_INDEX_IN_FILE].trim();
+                if(loading){
+                    numStr = splitLine[AMT_INDEX_IN_FILE].trim();
+                    numStr = numStr.substring(1, numStr.length());
+                }
+                else{
+                    numStr = splitLine[AMT_INDEX_IN_FILE].trim();
+                }
                 Double amtInt = Double.parseDouble(numStr);
                 accAmt.add(amtInt);
             }

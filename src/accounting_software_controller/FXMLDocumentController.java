@@ -30,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
@@ -356,12 +357,13 @@ public class FXMLDocumentController implements Initializable {
     
     public void importFromCsv(){
         Stage s = new Stage();
-        DirectoryChooser dc = new DirectoryChooser();
-        dc.setTitle("Select CSV destination");  
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Select CSV file to load");  
         String path = "";
         try{      //this is used when user clicks the close button on the file chooser window
-            path = dc.showDialog(s).getAbsolutePath();
-            accModel.readFromFileAndAppendAccounts(path);
+            path = fc.showOpenDialog(s).getAbsolutePath();
+            //path = fc.showDialog(s).getAbsolutePath();
+            accModel.readFromFileAndAppendAccounts(path, true);
         }
         catch(NullPointerException e){
             System.out.println(e.toString());
